@@ -1,0 +1,133 @@
+<?php //resource_metadata_71fde38a644c965c8e5336d7eeca26d6
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata')),
+    ],
+    null,
+    [
+        'ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata' => [
+            'shortName' => [
+                'resp',
+            ],
+            'description' => [
+                'A finding.',
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'method' => 'GET',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                    ],
+                    'delete' => [
+                        'method' => 'DELETE',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                    ],
+                    'put' => [
+                        'method' => 'PUT',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                    ],
+                    'patch' => [
+                        'method' => 'PATCH',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'json' => [
+                                'application/merge-patch+json',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'collectionOperations' => [
+                [
+                    'get' => [
+                        'method' => 'GET',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                    ],
+                    'post' => [
+                        'method' => 'POST',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'json' => [
+                                'application/json',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'graphql' => [
+                [
+                    'item_query' => [],
+                    'collection_query' => [],
+                    'delete' => [],
+                    'update' => [],
+                    'create' => [],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'formats' => [
+                        'json',
+                    ],
+                    'input' => null,
+                    'output' => null,
+                    'filters' => [
+                        'annotated_app_entityresp_api_platform_core_bridge_doctrine_orm_filter_search_filter',
+                    ],
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];
