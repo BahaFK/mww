@@ -1,5 +1,5 @@
 <?php
-// api/src/Entity/action.php
+// api/src/Entity/Action.php
 
 namespace App\Entity;
 
@@ -22,7 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
  */
 #[ApiResource]
-class action
+class Action
 {
         /**
          * The id of this action.
@@ -36,19 +36,19 @@ class action
 
 
    /**
-    * @ORM\ManyToOne(targetEntity=finding::class, inversedBy="actions")
+    * @ORM\ManyToOne(targetEntity=Finding::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
     */
    private $findings;
 
    /**
-    * @ORM\ManyToOne(targetEntity=area::class, inversedBy="actions")
+    * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
     */
    private $area;
 
       /**
-    * @ORM\ManyToOne(targetEntity=resp::class, inversedBy="actions")
+    * @ORM\ManyToOne(targetEntity=Resp::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
     */
     private $resp;
@@ -125,12 +125,12 @@ class action
         return $this->id;
     }
 
-    public function getFindings(): ?finding
+    public function getFindings(): ?Finding
     {
         return $this->findings;
     }
 
-    public function setFindings(?finding $findings): self
+    public function setFindings(?Finding $findings): self
     {
         $this->findings = $findings;
 
@@ -138,13 +138,13 @@ class action
     }
 
 
-    public function getArea(): ?area
+    public function getArea(): ?Area
     {
         return $this->area;
 
     }
 
-    public function setArea(?area $area): self
+    public function setArea(?Area $area): self
     {
         $this->area = $area;
 
@@ -153,13 +153,13 @@ class action
 
 
     
-    public function getResp(): ?resp
+    public function getResp(): ?Resp
     {
         return $this->resp;
 
     }
 
-    public function setResp(?resp $resp): self
+    public function setResp(?Resp $resp): self
     {
         $this->resp = $resp;
 

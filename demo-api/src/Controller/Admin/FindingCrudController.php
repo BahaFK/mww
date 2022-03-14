@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\resp;
+use App\Entity\Finding;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class respCrudController extends AbstractCrudController
+class FindingCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return resp::class;
+        return Finding::class;
     }
 
     /*

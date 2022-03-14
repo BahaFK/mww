@@ -2,10 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\action;
-use App\Entity\finding;
-use App\Entity\area;
-use App\Entity\resp;
+use App\Entity\Action;
+use App\Entity\Finding;
+use App\Entity\Area;
+use App\Entity\Resp;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -31,10 +31,10 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Action', 'fa fa-check', action::class);
-        yield MenuItem::linkToCrud('Finding', 'fa fa-times', finding::class);
-        yield MenuItem::linkToCrud('Area', 'fa fa-map-marker', area::class);
-        yield MenuItem::linkToCrud('Responsible', 'fa fa-user', resp::class);
+        yield MenuItem::linkToCrud('Action', 'fa fa-check', Action::class);
+        yield MenuItem::linkToCrud('Finding', 'fa fa-times', Finding::class);
+        yield MenuItem::linkToCrud('Area', 'fa fa-map-marker', Area::class);
+        yield MenuItem::linkToCrud('Responsible', 'fa fa-user', Resp::class);
 
    
     }

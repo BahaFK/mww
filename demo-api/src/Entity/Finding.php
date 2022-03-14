@@ -1,5 +1,5 @@
 <?php
-// api/src/Entity/finding.php
+// api/src/Entity/Finding.php
 
 namespace App\Entity;
 
@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 
  */
 #[ApiResource]
-class finding
+class Finding
 {
         /**
          * The id of this review.
@@ -34,7 +34,7 @@ class finding
 
 
     /**
-     * @ORM\OneToMany(targetEntity=action::class, mappedBy="findings", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Action::class, mappedBy="findings", orphanRemoval=true)
      */
     private $actions;
 
@@ -44,9 +44,11 @@ class finding
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity=Waste::class, mappedBy="waste", cascade={"persist", "remove"})
      */
     private $waste;
+
+
 
     public function __construct()
     {
@@ -60,14 +62,14 @@ class finding
     }
 
     /**
-     * @return Collection<int, action>
+     * @return Collection<int, Action>
      */
     public function getactions(): Collection
     {
         return $this->actions;
     }
 
-    public function addAction(action $action): self
+    public function addAction(Action $action): self
     {
         if (!$this->actions->contains($action)) {
             $this->actions[] = $action;
@@ -77,7 +79,7 @@ class finding
         return $this;
     }
 
-    public function removeAction(action $action): self
+    public function removeAction(Action $action): self
     {
         if ($this->actions->removeElement($action)) {
             // set the owning side to null (unless already changed)
@@ -101,20 +103,33 @@ class finding
         return $this;
     }
 
-    public function getWaste(): ?string
+
+
+   public function getWaste(): ?Waste
+   {
+       return $this->waste;
+   }
+
+   public function setWaste(?Waste $waste): self
+   {
+       // unset the owning side of the relation if necessary
+       if ($waste === null && $this->waste !== null) {
+           $this->waste->setWaste(null);
+       }
+
+       // set the owning side of the relation if necessary
+       if ($waste !== null && $waste->getWaste() !== $this) {
+           $waste->setWaste($this);
+       }
+
+       $this->waste = $waste;
+
+       return $this;
+   }
+    public function __tostring()
     {
-        return $this->waste;
+        return $this->description;
+
     }
 
-    public function setWaste(string $waste): self
-    {
-        $this->waste = $waste;
-
-        return $this;
-    }
-   // public function __tostring()
-   // {
-   // return $this->findings;
-        
-   // }
 }

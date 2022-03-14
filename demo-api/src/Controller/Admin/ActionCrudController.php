@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\action;
+use App\Entity\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -10,11 +10,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class actionCrudController extends AbstractCrudController
+class ActionCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return action::class;
+        return Action::class;
     }
 
 
@@ -25,9 +25,9 @@ class actionCrudController extends AbstractCrudController
             DateField::new('Date'),
             DateField::new('Due_Date'),
             TextField::new('Description'),
-            //AssociationField::new('finding'),
-            //AssociationField::new('ref'),
-            //TextField::new('Responsible'),
+            AssociationField::new('findings'),
+            AssociationField::new('area'),
+            AssociationField::new('resp'),
             IntegerField::new('Plan_Status'),
             IntegerField::new('Do_Status'),
             IntegerField::new('Check_Status'),

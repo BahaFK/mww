@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\area;
+use App\Entity\Area;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class areaCrudController extends AbstractCrudController
+class AreaCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return area::class;
+        return Area::class;
     }
 
     /*

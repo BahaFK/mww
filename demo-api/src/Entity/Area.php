@@ -1,5 +1,5 @@
 <?php
-// api/src/Entity/area.php
+// api/src/Entity/Area.php
 
 namespace App\Entity;
 
@@ -12,15 +12,15 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * A finding.
+ * An area.
  *
  * @ORM\Entity
  * @ApiResource(formats={"json"})
- * @ApiFilter(SearchFilter::class, properties={"id":"exact", "ref":"ipartial"})
+ * @ApiFilter(SearchFilter::class, properties={"ref":"exact", "name":"ipartial"})
  *
  */
 #[ApiResource]
-class area
+class Area
 {
         /**
          * The id of this review.
@@ -36,7 +36,7 @@ class area
 
         
     /**
-     * @ORM\OneToMany(targetEntity=action::class, mappedBy="area", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Action::class, mappedBy="area", orphanRemoval=true)
      */
     private $actions;
 
@@ -45,6 +45,16 @@ class area
      */
     private $ref;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="unit")
+     */
+    private $unit;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->actions = new ArrayCollection();
@@ -52,14 +62,14 @@ class area
 
 
     /**
-     * @return Collection<int, action>
+     * @return Collection<int, Action>
      */
     public function getActions(): Collection
     {
         return $this->actions;
     }
 
-    public function addAction(action $action): self
+    public function addAction(Action $action): self
     {
         if (!$this->actions->contains($action)) {
             $this->actions[] = $action;
@@ -69,7 +79,7 @@ class area
         return $this;
     }
 
-    public function removeAction(action $action): self
+    public function removeAction(Action $action): self
     {
         if ($this->actions->removeElement($action)) {
             // set the owning side to null (unless already changed)
@@ -98,5 +108,31 @@ class area
         return $this;
     }
 
+    public function getUnit(): ?Unit
+    {
+        return $this->unit;
+    }
+
+    public function setUnit(?Unit $unit): self
+    {
+        $this->unit = $unit;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+    public function __toString(){
+        return $this->ref;
+    }
 
 }
