@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Resp;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class RespCrudController extends AbstractCrudController
 {
@@ -12,14 +14,19 @@ class RespCrudController extends AbstractCrudController
         return Resp::class;
     }
 
-    /*
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+
+            TextField::new('ref'),
+            TextField::new('name'),
+            TextField::new('mail'),
+            AssociationField::new('areas'),
+            AssociationField::new('units'),
+            AssociationField::new('sections'),
+
         ];
     }
-    */
+
 }
