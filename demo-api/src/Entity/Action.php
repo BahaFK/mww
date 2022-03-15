@@ -36,22 +36,17 @@ class Action
 
 
    /**
-    * @ORM\ManyToOne(targetEntity=Finding::class, inversedBy="actions")
-    * @ORM\JoinColumn(nullable=false)
-    */
-   private $findings;
-
-   /**
     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
     */
    private $area;
 
-      /**
-    * @ORM\ManyToOne(targetEntity=Resp::class, inversedBy="actions")
-    * @ORM\JoinColumn(nullable=false)
-    */
-    private $resp;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Waste::class, mappedBy="waste")
+     */
+    private $wastes;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -118,6 +113,23 @@ class Action
 
      */
     private $updatedAt;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $finding;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Resp::class, mappedBy="actions")
+     */
+    private $resps;
+
+    public function __construct()
+    {
+        $this->wastes = new ArrayCollection();
+        $this->resps = new ArrayCollection();
+    }
       
 
     public function getId(): ?int
@@ -125,17 +137,6 @@ class Action
         return $this->id;
     }
 
-    public function getFindings(): ?Finding
-    {
-        return $this->findings;
-    }
-
-    public function setFindings(?Finding $findings): self
-    {
-        $this->findings = $findings;
-
-        return $this;
-    }
 
 
     public function getArea(): ?Area
@@ -152,19 +153,6 @@ class Action
     }
 
 
-    
-    public function getResp(): ?Resp
-    {
-        return $this->resp;
-
-    }
-
-    public function setResp(?Resp $resp): self
-    {
-        $this->resp = $resp;
-
-        return $this;
-    }
 
     public function getWeek(): ?string
     {
@@ -295,6 +283,72 @@ class Action
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return Collection<int, Waste>
+     */
+    public function getWastes(): Collection
+    {
+        return $this->wastes;
+    }
+
+    public function addWaste(Waste $waste): self
+    {
+        if (!$this->wastes->contains($waste)) {
+            $this->wastes[] = $waste;
+            $waste->addWaste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWaste(Waste $waste): self
+    {
+        if ($this->wastes->removeElement($waste)) {
+            $waste->removeWaste($this);
+        }
+
+        return $this;
+    }
+
+    public function getFinding(): ?string
+    {
+        return $this->finding;
+    }
+
+    public function setFinding(string $finding): self
+    {
+        $this->finding = $finding;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Resp>
+     */
+    public function getResps(): Collection
+    {
+        return $this->resps;
+    }
+
+    public function addResp(Resp $resp): self
+    {
+        if (!$this->resps->contains($resp)) {
+            $this->resps[] = $resp;
+            $resp->addAction($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResp(Resp $resp): self
+    {
+        if ($this->resps->removeElement($resp)) {
+            $resp->removeAction($this);
+        }
+
+        return $this;
     }
 
 

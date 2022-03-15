@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * A finding.
+ * A responsible.
  *
  * @ORM\Entity
  * @ApiResource(formats={"json"})
@@ -30,14 +30,6 @@ class Resp
          */
     private ?int $id = null;
 
-    
-
-
-
-    /**
-     * @ORM\OneToMany(targetEntity=Action::class, mappedBy="resp", orphanRemoval=true)
-     */
-    private $actions;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -54,40 +46,29 @@ class Resp
      */
     private $mail;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Action::class, inversedBy="resps")
+     */
+    private $actions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="resps")
+     */
+    private $areas;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="resps")
+     */
+    private $units;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Section::class, inversedBy="resps")
+     */
+    private $sections;
+
     public function __construct()
     {
         $this->actions = new ArrayCollection();
-    }
-
-
-    /**
-     * @return Collection<int, Action>
-     */
-    public function getActions(): Collection
-    {
-        return $this->actions;
-    }
-
-    public function addAction(Action $action): self
-    {
-        if (!$this->actions->contains($action)) {
-            $this->actions[] = $action;
-            $action->setResp($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAction(Action $action): self
-    {
-        if ($this->actions->removeElement($action)) {
-            // set the owning side to null (unless already changed)
-            if ($action->setResp() === $this) {
-                $action->setResp(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getId(): ?int
@@ -134,5 +115,65 @@ class Resp
     {
         return $this->ref;
 
+    }
+
+    /**
+     * @return Collection<int, Action>
+     */
+    public function getActions(): Collection
+    {
+        return $this->actions;
+    }
+
+    public function addAction(Action $action): self
+    {
+        if (!$this->actions->contains($action)) {
+            $this->actions[] = $action;
+        }
+
+        return $this;
+    }
+
+    public function removeAction(Action $action): self
+    {
+        $this->actions->removeElement($action);
+
+        return $this;
+    }
+
+    public function getAreas(): ?Area
+    {
+        return $this->areas;
+    }
+
+    public function setAreas(?Area $areas): self
+    {
+        $this->areas = $areas;
+
+        return $this;
+    }
+
+    public function getUnits(): ?Unit
+    {
+        return $this->units;
+    }
+
+    public function setUnits(?Unit $units): self
+    {
+        $this->units = $units;
+
+        return $this;
+    }
+
+    public function getSections(): ?Section
+    {
+        return $this->sections;
+    }
+
+    public function setSections(?Section $sections): self
+    {
+        $this->sections = $sections;
+
+        return $this;
     }
 }

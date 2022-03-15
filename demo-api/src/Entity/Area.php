@@ -55,9 +55,15 @@ class Area
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Resp::class, mappedBy="areas")
+     */
+    private $resps;
+
     public function __construct()
     {
         $this->actions = new ArrayCollection();
+        $this->resps = new ArrayCollection();
     }
 
 
@@ -133,6 +139,36 @@ class Area
     }
     public function __toString(){
         return $this->ref;
+    }
+
+    /**
+     * @return Collection<int, Resp>
+     */
+    public function getResps(): Collection
+    {
+        return $this->resps;
+    }
+
+    public function addResp(Resp $resp): self
+    {
+        if (!$this->resps->contains($resp)) {
+            $this->resps[] = $resp;
+            $resp->setAreas($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResp(Resp $resp): self
+    {
+        if ($this->resps->removeElement($resp)) {
+            // set the owning side to null (unless already changed)
+            if ($resp->getAreas() === $this) {
+                $resp->setAreas(null);
+            }
+        }
+
+        return $this;
     }
 
 }
