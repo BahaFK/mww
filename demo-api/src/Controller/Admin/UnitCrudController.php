@@ -2,16 +2,16 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Area;
+use App\Entity\Unit;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
-class AreaCrudController extends AbstractCrudController
+class UnitCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Area::class;
+        return Unit::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -19,7 +19,7 @@ class AreaCrudController extends AbstractCrudController
         return [
             TextField::new('ref'),
             TextField::new('name'),
-            AssociationField::new('unit'),
+            AssociationField::new('section'),
 
         ];
     }
