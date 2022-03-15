@@ -66,6 +66,11 @@ class Resp
      */
     private $sections;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $manager;
+
     public function __construct()
     {
         $this->actions = new ArrayCollection();
@@ -173,6 +178,18 @@ class Resp
     public function setSections(?Section $sections): self
     {
         $this->sections = $sections;
+
+        return $this;
+    }
+
+    public function getManager(): ?bool
+    {
+        return $this->manager;
+    }
+
+    public function setManager(bool $manager): self
+    {
+        $this->manager = $manager;
 
         return $this;
     }

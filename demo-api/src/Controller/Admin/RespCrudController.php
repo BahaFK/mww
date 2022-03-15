@@ -6,6 +6,7 @@ use App\Entity\Resp;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class RespCrudController extends AbstractCrudController
 {
@@ -22,7 +23,8 @@ class RespCrudController extends AbstractCrudController
             TextField::new('ref'),
             TextField::new('name'),
             TextField::new('mail'),
-            AssociationField::new('areas'),
+            BooleanField::new('manager')->renderAsSwitch(false),
+        AssociationField::new('areas'),
             AssociationField::new('units'),
             AssociationField::new('sections'),
 
