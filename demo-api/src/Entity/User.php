@@ -32,28 +32,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     /**
-     * @var string The hashed password
+     * @var string
      * @ORM\Column(type="string")
      */
     private $password;
 
-    private $plainPassword;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string", length=255)
      */
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
+    private $username;
 
-    /**
-     * @param mixed $plainPassword
-     */
-    public function setPlainPassword($plainPassword): void
-    {
-        $this->plainPassword = $plainPassword;
-    }
 
     public function getId(): ?int
     {
@@ -79,15 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
-    }
-
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
     /**
@@ -109,9 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
+
     public function getPassword(): string
     {
         return $this->password;
@@ -136,11 +115,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @see UserInterface
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
+    public function getUsername(): string
+    {
+        return (string) $this->username;
+    }
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        $this->plainPassword = null;
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function __serialize(): array
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        return [$this->id, $this->username, $this->password];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        [$this->id, $this->username, $this->password] = $data;
     }
 }
