@@ -24,7 +24,7 @@ class RespCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('mail'),
             BooleanField::new('manager')->renderAsSwitch(false),
-        AssociationField::new('areas'),
+            AssociationField::new('areas'),
             AssociationField::new('units'),
             AssociationField::new('sections'),
 

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Area;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class AreaCrudController extends AbstractCrudController
@@ -18,7 +19,8 @@ class AreaCrudController extends AbstractCrudController
     {
         return [
             TextField::new('ref'),
-            TextField::new('name'),
+            //TextField::new('name'),
+            TextareaField::new('name'),
             AssociationField::new('unit'),
 
         ];

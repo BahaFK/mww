@@ -30,11 +30,11 @@ class ActionCrudController extends AbstractCrudController
             AssociationField::new('area'),
             AssociationField::new('resps'),
             IntegerField::new('Plan_Status'),
-            IntegerField::new('Do_Status'),
-            IntegerField::new('Check_Status'),
-            IntegerField::new('Act_Status'),
-            TextField::new('Photo_Before'),
-            TextField::new('Photo_After'),
+            //IntegerField::new('Do_Status'),
+           // IntegerField::new('Check_Status'),
+            //IntegerField::new('Act_Status'),
+           // TextField::new('Photo_Before'),
+           // TextField::new('Photo_After'),
 
             
         ];
