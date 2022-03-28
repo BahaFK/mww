@@ -1,0 +1,127 @@
+<mat-dialog-content class="mat-typography">
+    <div class="invoice-container">
+
+        <!-- INVOICE -->
+        <div class="card-invoice">
+
+            <div class="header">
+
+                <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                    <div class="client">
+                        <div class="invoice-number" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="title">ACTION  :</span>
+                            <span class="number">  {{element.finding}}</span>
+                        </div>
+
+                        <div class="due-date" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="title">DATE SOUMISSSION</span>
+                            <span class="date">{{element.date}}</span>
+                        </div>
+
+                        <div class="due-date" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="title">DATE REALISATION</span>
+                            <span class="date">{{element.due_date}}</span>
+                        </div>
+
+                        <div class="due-date" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="title">ZONE</span>
+                            <span class="date">{{element.due_date}}</span>
+                        </div>
+
+                        <!--                    <div class="info">-->
+                        <!--                        <div class="title">{{element.client.title}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.address" class="address">{{element.client.address}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.phone" class="phone">{{element.client.phone}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.email" class="email">{{element.client.email}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.website" class="website">{{element.client.website}}</div>-->
+                        <!--                    </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="note">Description</div>
+                <div fxLayout="row" fxLayoutAlign="start start">
+                    <div class="small-note">
+                        In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue dolor. Quisque
+                        scelerisque lacus sed feugiat fermentum. Cras aliquet facilisis pellentesque. Nunc hendrerit
+                        quam at leo commodo, a suscipit tellus dapibus. Etiam at felis volutpat est mollis lacinia.
+                        Mauris placerat sem sit amet velit mollis, in porttitor ex finibus. Proin eu nibh id libero
+                        tincidunt lacinia et eget eros.
+                    </div>
+                </div>
+                <table class="simple invoice-table">
+                    <thead>
+                    <tr>
+                        <th>STATUS</th>
+                        <th>AVANCEMENT</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="title">
+                                Planification
+                            </div>
+                        </td>
+                        <td>
+                            {{element.plan_status}}
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="title">
+                                Vérification
+                            </div>
+                        </td>
+                        <td>
+                            {{element.check_satus}}
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="title">
+                                Action
+                            </div>
+                        </td>
+                        <td>
+                            {{element.act_status}}
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="cards">
+                    <div class="card" fxLayout="column">
+
+                        <div class="badge "><h4> AVANT </h4>
+                        </div>
+
+                        <div class="fuse-card ring-2">
+
+                            <img src="assets/images/action-demo/1_1.png">
+
+                        </div>
+                    </div>
+
+                    <div class="card"fxLayout="column">
+
+                        <div class="badge "><h4> APRES </h4>
+                        </div>
+                        <div class="fuse-card ring-2">
+
+                            <img src="assets/images/action-demo/1_2.png">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</mat-dialog-content>

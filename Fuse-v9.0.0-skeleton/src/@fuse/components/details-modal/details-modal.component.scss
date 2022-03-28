@@ -1,0 +1,402 @@
+@import "src/@fuse/scss/fuse";
+
+
+.invoice-container {
+    margin: 0 auto;
+
+    .card-invoice {
+        width: 1020px;
+        min-width: 1020px;
+        max-width: 1020px;
+        padding: 64px 88px;
+        overflow: hidden;
+        background: #FFFFFF;
+        @include mat-elevation(7);
+
+        .header {
+
+            .invoice-date {
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.54);
+                margin-bottom: 32px;
+            }
+
+            .client {
+
+                .invoice-number {
+                    font-size: 32px;
+                    padding-bottom: 50px;
+                    font-weight: bold;
+
+                    .title {
+                        color: rgba(0, 0, 0, 0.54);
+                    }
+
+                    .number {
+                        color: rgba(0, 0, 0, 0.87);
+                        padding-left: 6px;
+                    }
+                }
+
+                .due-date {
+                    font-size: 18px;
+                    padding-bottom: 16px;
+
+                    .title {
+                        color: rgba(0, 0, 0, 0.54);
+                    }
+
+                    .date {
+                        color: rgba(0, 0, 0, 0.87);
+                        padding-left: 6px;
+                    }
+                }
+
+                .info {
+                    color: rgba(0, 0, 0, 0.54);
+                    line-height: 22px;
+                }
+            }
+
+            .issuer {
+                margin-right: -88px;
+                padding-right: 66px;
+
+                .logo {
+                    width: 96px;
+                    padding: 0 8px;
+                    border-right: 1px solid rgba(255, 255, 255, 0.7);
+                }
+
+                .info {
+                    padding: 16px;
+                }
+            }
+        }
+
+        .content {
+
+            .note {
+                color: rgba(0, 0, 0, 0.54);
+                font-size: 18px;
+                padding-bottom: 16px;
+            }
+            .invoice-table {
+                margin-top: 64px;
+                font-size: 15px;
+
+                thead {
+
+                    tr {
+
+                        th {
+                            color: rgba(0, 0, 0, 0.87);
+                            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+                            &:first-child {
+                                padding-left: 8px;
+                            }
+
+                            &:last-child {
+                                padding-right: 8px;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+
+                    tr {
+
+                        td {
+                            color: rgba(0, 0, 0, 0.87);
+                            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+                            &:first-child {
+                                padding-left: 8px;
+                            }
+
+                            &:last-child {
+                                padding-right: 8px;
+                            }
+                        }
+                    }
+                }
+
+                .title {
+                    font-size: 16px;
+                }
+
+                .detail {
+                    margin-top: 8px;
+                    font-size: 12px;
+                    color: rgba(0, 0, 0, 0.54);
+                    max-width: 360px;
+                }
+            }
+
+            .invoice-table-footer {
+                margin: 32px 0 72px 0;
+
+                tr {
+
+                    td {
+                        text-align: right;
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: rgba(0, 0, 0, 0.54);
+                        border-bottom: none;
+                        padding: 4px 8px;
+
+                        &:first-child {
+                            text-align: left;
+                        }
+                    }
+
+                    &.discount {
+
+                        td {
+                            padding-bottom: 32px;
+                        }
+                    }
+
+                    &.total {
+
+                        td {
+                            padding: 24px 8px;
+                            border-top: 1px solid rgba(0, 0, 0, 0.12);
+                            font-size: 35px;
+                            font-weight: 300;
+                            color: rgba(0, 0, 0, 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer {
+
+
+            // IE10 fix
+            .logo, .small-note {
+                -ms-flex: 0 1 auto;
+            }
+
+            .logo {
+                width: 32px;
+                min-width: 32px;
+                margin-right: 24px;
+            }
+
+            .small-note {
+                font-size: 12px;
+                font-weight: 600;
+                color: rgba(0, 0, 0, 0.54);
+                line-height: 18px;
+            }
+        }
+    }
+}
+
+/* PRINT STYLES */
+@media print {
+
+
+    .invoice-container {
+        padding: 0;
+
+        .card {
+            width: 100%;
+            min-width: 0;
+            background: none;
+            padding: 0;
+            box-shadow: none;
+
+            .header {
+
+                .invoice-date {
+                    margin-bottom: 16pt;
+                }
+
+                .issuer {
+                    padding-right: 0;
+                    margin-right: 0;
+                }
+            }
+
+            .content {
+
+                .invoice-table {
+                    margin-top: 16pt;
+
+                    thead {
+
+                        tr {
+
+                            th {
+                                font-size: 10pt;
+                                max-width: 60pt;
+
+                                &:first-child {
+                                    padding-left: 0;
+                                }
+
+                                &:last-child {
+                                    padding-right: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    tbody {
+
+                        tr {
+
+                            td {
+
+                                &:first-child {
+                                    padding-left: 0;
+                                }
+
+                                &:last-child {
+                                    padding-right: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    .title {
+                        font-size: 10pt;
+                    }
+
+                    .detail {
+                        margin-top: 4pt;
+                        font-size: 9pt;
+                        max-width: none;
+                    }
+                }
+
+                .invoice-table-footer {
+                    margin: 16pt 0;
+
+                    tr {
+
+                        td {
+                            font-size: 13pt;
+                            padding: 4pt 4pt;
+
+                            &:first-child {
+                                text-align: left;
+                                padding-left: 0;
+                            }
+
+                            &:last-child {
+                                padding-right: 0;
+                            }
+                        }
+
+                        &.discount {
+
+                            td {
+                                padding-bottom: 16pt;
+                            }
+                        }
+
+                        &.total {
+
+                            td {
+                                padding: 16pt 4pt 0 4pt;
+                                font-size: 16pt;
+
+                                &:first-child {
+                                    padding-left: 0;
+                                }
+
+                                &:last-child {
+                                    padding-right: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .footer {
+
+                .note {
+                    font-size: 10pt;
+                    margin-bottom: 8pt;
+                }
+
+                .logo {
+                    margin-right: 8pt;
+                }
+
+                .small-note {
+                    font-size: 8pt;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 24px 24px 24px 24px;
+    .card {
+        display: flex;
+        align-items: flex-start;
+        padding: 24px;
+        margin-bottom: 96px;
+        border-radius: 1rem;
+        img{
+            width: 350px !important;
+            height: 450px !important;
+        }
+        .card-preview {
+            display: flex;
+            min-width: 320px;
+        }
+
+        .card-source {
+            display: none;
+        }
+        .ring-2 {
+            --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color) !important;
+            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color) !important;
+            box-shadow: var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000) !important;
+        }
+        .fuse-card {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            --tw-bg-opacity: 1;
+            background-color: rgba(var(--fuse-bg-card-rgb),var(--tw-bg-opacity));
+            border-radius: 1rem;
+            --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);
+            --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+        }
+        .badge{
+            position: relative;
+            bottom: -25px;
+            z-index: 1000;
+            font-size: 25px;
+            height: 40px;
+            padding: 10px 20px;
+            margin-left: 20px;
+            background-color: #039be5 !important;
+            color: white !important;
+            border-radius: 20px;
+            h4{
+                margin: 0px;
+                font-weight: bold;
+            }
+        }
+    }
+}

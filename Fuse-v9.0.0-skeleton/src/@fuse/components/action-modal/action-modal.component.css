@@ -1,0 +1,92 @@
+/* MODAL STYLES
+-------------------------------*/
+
+.jw-modal {
+  /* modal container fixed across whole screen */
+  position: fixed;
+  width: 800px;
+  top: 25%;
+  left: 25%;
+  bottom: 40px;
+  /* z-index must be higher than .jw-modal-background */
+  z-index: 1000;
+  /* enables scrolling for tall modals */
+  overflow: auto;
+}
+
+.jw-modal .jw-modal-body {
+  background: #fff;
+  /* margin exposes part of the modal background */
+  margin: 40px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  transition: 0.3s;
+  border-radius: 5 px;
+}
+
+.jw-modal .jw-modal-background {
+  /* modal background fixed across whole screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* semi-transparent black  */
+  background-color: #000;
+  opacity: 0.75;
+  /* z-index must be below .jw-modal and above everything else  */
+  z-index: 900;
+}
+
+.jw-modal-open {
+  /* body overflow is hidden to hide main scrollbar when modal window is open */
+  overflow: hidden;
+}
+
+.right {
+  float: right;
+}
+::ng-deep .mat-tab-header-pagination-chevron{
+  border-color: #c2185b;
+}
+.mat-dialog-title{
+  background-color: rgb(244 246 249);
+  justify-content: center;
+  font-size: large;
+  display: flex;
+  margin: 0;
+  padding: 10px 0 10px;
+}
+h1{
+  margin:0;
+}
+.mat-dialog-actions{
+  background-color: rgb(244 246 249);
+  display: block;
+  min-height: 0px;
+  padding: 8px;
+}
+.mat-dialog-content {
+  display: block;
+  margin: 0 20px;
+  padding: 10px 0 20px;
+  max-height: 65vh;
+  overflow: auto;
+  background: #fff;
+}
+.mat-cancel{
+  margin: 0 10px;
+  color: #BDBDBD;
+}
+.btn{
+  margin: 5px;
+}
+.btn-success {
+  color: #fff;
+  background-color: #41c689;
+  border-color: transparent;
+}
+.btn-light {
+  color: #000;
+  background-color: #fff;
+  border-color: #d0d1d3;
+}
