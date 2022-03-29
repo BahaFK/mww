@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -17,11 +18,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * An action.
  *
  * @ORM\Entity
- * @ApiResource(formats={"json"})
- * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "due_date":"ipartial", "week":"ipartial"})
 
+ * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "due_date":"ipartial", "week":"ipartial"})
+ * @ApiResource(
+ *     normalizationContext={"groups"={"Action"}},
+ *     denormalizationContext={"groups"={"Action"}}
+ *     )
  */
-#[ApiResource]
+
+
 class Action
 {
         /**
@@ -38,6 +43,7 @@ class Action
    /**
     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
+    * @Groups({"Action"})
     */
    private $area;
 
@@ -50,6 +56,7 @@ class Action
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Action"})
      */
     private $week;
 
@@ -65,6 +72,7 @@ class Action
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Action"})
      */
     private $description;
 
@@ -122,6 +130,7 @@ class Action
 
     /**
      * @ORM\ManyToMany(targetEntity=Resp::class, mappedBy="actions")
+     * @Groups({"Action"})
      */
     private $resps;
 

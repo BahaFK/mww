@@ -3,13 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\UnitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"Unit"}},
+ *     denormalizationContext={"groups"={"Unit"}}
+ *     )
  * @ORM\Entity(repositoryClass=UnitRepository::class)
  */
 class Unit
@@ -23,11 +27,15 @@ class Unit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Unit"})
+     * @Groups({"Resp"})
+     * @Groups({"Area"})
      */
     private $ref;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Unit"})
      */
     private $name;
 
@@ -38,6 +46,7 @@ class Unit
 
     /**
      * @ORM\ManyToOne(targetEntity=Section::class, inversedBy="section")
+     * @Groups({"Unit"})
      */
     private $section;
 
