@@ -9,22 +9,25 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
  * An area.
  *
  * @ORM\Entity
- * @ApiResource(formats={"json"})
+ * @ApiResource(
+ *     normalizationContext={"groups"={"Area"}},
+ *     denormalizationContext={"groups"={"Area"}}
+ *     )
  * @ApiFilter(SearchFilter::class, properties={"ref":"exact", "name":"ipartial"})
- *
+
  */
 #[ApiResource]
 class Area
 {
         /**
          * The id of this review.
-         *
          * @ORM\Id
          * @ORM\GeneratedValue
          * @ORM\Column(type="integer")
@@ -41,17 +44,21 @@ class Area
     private $actions;
 
     /**
+     * @Groups({"Action"})
+     * @Groups({"Area"})
      * @ORM\Column(type="string", length=255)
      */
     private $ref;
 
     /**
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="unit")
+     * @Groups({"Area"})
      */
     private $unit;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Area"})
      */
     private $name;
 
