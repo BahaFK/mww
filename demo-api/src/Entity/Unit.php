@@ -3,16 +3,15 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\UnitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
- *     normalizationContext={"groups"={"Unit"}},
- *     denormalizationContext={"groups"={"Unit"}}
+ *     formats={"json"},
+ *     normalizationContext={"groups"={"unit"}}
  *     )
  * @ORM\Entity(repositoryClass=UnitRepository::class)
  */
@@ -22,31 +21,31 @@ class Unit
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"unit"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Unit"})
-     * @Groups({"Resp"})
-     * @Groups({"Area"})
+     * @Groups({"unit"})
      */
     private $ref;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Unit"})
+     * @Groups({"unit","area"})
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity=Area::class, mappedBy="unit")
+     * @Groups({"unit"})
      */
-    private $unit;
+    private $areas;
 
     /**
      * @ORM\ManyToOne(targetEntity=Section::class, inversedBy="section")
-     * @Groups({"Unit"})
+     *
      */
     private $section;
 
@@ -57,7 +56,7 @@ class Unit
 
     public function __construct()
     {
-        $this->unit = new ArrayCollection();
+        $this->areas = new ArrayCollection();
         $this->resps = new ArrayCollection();
     }
 
@@ -93,27 +92,27 @@ class Unit
     /**
      * @return Collection<int, Area>
      */
-    public function getUnit(): Collection
+    public function getAreas(): Collection
     {
-        return $this->unit;
+        return $this->areas;
     }
 
-    public function addUnit(Area $unit): self
+    public function addAreas(Area $areas): self
     {
-        if (!$this->unit->contains($unit)) {
-            $this->unit[] = $unit;
-            $unit->setUnit($this);
+        if (!$this->areas->contains($areas)) {
+            $this->areas[] = $areas;
+            $areas->setUnit($this);
         }
 
         return $this;
     }
 
-    public function removeUnit(Area $unit): self
+    public function removeAreas(Area $areas): self
     {
-        if ($this->unit->removeElement($unit)) {
+        if ($this->areas->removeElement($areas)) {
             // set the owning side to null (unless already changed)
-            if ($unit->getUnit() === $this) {
-                $unit->setUnit(null);
+            if ($areas->getUnit() === $this) {
+                $areas->setUnit(null);
             }
         }
 
@@ -123,6 +122,15 @@ class Unit
     public function getSection(): ?Section
     {
         return $this->section;
+    }
+
+
+    /**
+     * @Groups({"unit"})
+     */
+    public function getSectionData(): ?string
+    {
+        return $this->section->getRef() . ' - ' . $this->section->getName();
     }
 
     public function setSection(?Section $section): self

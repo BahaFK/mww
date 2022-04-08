@@ -4,13 +4,13 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 
@@ -18,15 +18,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * An action.
  *
  * @ORM\Entity
-
+ * @ApiResource(formats={"json"})
  * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "due_date":"ipartial", "week":"ipartial"})
  * @ApiResource(
- *     normalizationContext={"groups"={"Action"}},
- *     denormalizationContext={"groups"={"Action"}}
+ *     formats={"json"},
+ *     normalizationContext={"groups"={"action"}}
  *     )
  */
-
-
 class Action
 {
         /**
@@ -35,6 +33,7 @@ class Action
          * @ORM\Id
          * @ORM\GeneratedValue
          * @ORM\Column(type="integer")
+         * @Groups({"action"})
          */
     private ?int $id ;
 
@@ -43,7 +42,6 @@ class Action
    /**
     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
-    * @Groups({"Action"})
     */
    private $area;
 
@@ -56,60 +54,50 @@ class Action
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Action"})
+     * @Groups({"action"})
      */
     private $week;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"action"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"action"})
      */
     private $due_date;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Action"})
+     * @Groups({"action"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"action"})
      */
-    private $plan_status;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $do_status;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $check_status;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $act_status;
-
+    private $status;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"action"})
      */
     private $photo_before;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"action"})
      */
     private $photo_after;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      * @Gedmo\Timestampable(on="create")
+     * @Groups({"action"})
 
      */
         
@@ -118,6 +106,7 @@ class Action
     /**
      * @ORM\Column(type="datetime_immutable")
      * @Gedmo\Timestampable(on="update")
+     * @Groups({"action"})
 
      */
     private $updatedAt;
@@ -125,12 +114,12 @@ class Action
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"action"})
      */
     private $finding;
 
     /**
      * @ORM\ManyToMany(targetEntity=Resp::class, mappedBy="actions")
-     * @Groups({"Action"})
      */
     private $resps;
 
@@ -147,6 +136,13 @@ class Action
     }
 
 
+    /**
+     * @Groups({"action"})
+     */
+    public function getAreaData(): ?string
+    {
+        return $this->area->getRef() . ' - ' . $this->area->getName();
+    }
 
     public function getArea(): ?Area
     {
@@ -211,54 +207,17 @@ class Action
         return $this;
     }
 
-    public function getPlanStatus(): ?int
+    public function getStatus(): ?int
     {
-        return $this->plan_status;
+        return $this->status;
     }
 
-    public function setPlanStatus(?int $plan_status): self
+    public function setStatus(?int $status): self
     {
-        $this->plan_status = $plan_status;
+        $this->tatus = $status;
 
         return $this;
     }
-
-    public function getDoStatus(): ?int
-    {
-        return $this->do_status;
-    }
-
-    public function setDoStatus(?int $do_status): self
-    {
-        $this->do_status = $do_status;
-
-        return $this;
-    }
-
-    public function getCheckStatus(): ?int
-    {
-        return $this->check_status;
-    }
-
-    public function setCheckStatus(?int $check_status): self
-    {
-        $this->check_status = $check_status;
-
-        return $this;
-    }
-
-    public function getActStatus(): ?int
-    {
-        return $this->act_status;
-    }
-
-    public function setActStatus(?int $act_status): self
-    {
-        $this->act_status = $act_status;
-
-        return $this;
-    }
-
     public function getPhotoBefore(): ?string
     {
         return $this->photo_before;

@@ -4,7 +4,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,10 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * A responsible.
  *
  * @ORM\Entity
- * @ApiResource(
- *     normalizationContext={"groups"={"Resp"}},
- *     denormalizationContext={"groups"={"Resp"}}
- *     )
+ * @ApiResource(formats={"json"})
   * @ApiFilter(SearchFilter::class, properties={"id":"exact", "name":"ipartial"})
  */
 #[ApiResource]
@@ -37,20 +33,16 @@ class Resp
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Resp"})
      */
     private $ref;
 
     /**
-     * @Groups({"Resp"})
-     * @Groups({"Action"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Resp"})
      */
     private $mail;
 
@@ -66,7 +58,6 @@ class Resp
 
     /**
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="resps")
-     * @Groups({"Resp"})
      */
     private $units;
 
@@ -127,7 +118,7 @@ class Resp
     }
     public function __toString()
     {
-        return $this->name;
+        return $this->ref;
 
     }
 

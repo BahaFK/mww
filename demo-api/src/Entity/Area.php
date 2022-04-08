@@ -17,20 +17,21 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ORM\Entity
  * @ApiResource(
- *     normalizationContext={"groups"={"Area"}},
- *     denormalizationContext={"groups"={"Area"}}
+ *     formats={"json"},
+ *     normalizationContext={"groups"={"unit","area"}}
  *     )
  * @ApiFilter(SearchFilter::class, properties={"ref":"exact", "name":"ipartial"})
-
+ *
  */
-#[ApiResource]
 class Area
 {
         /**
          * The id of this review.
+         *
          * @ORM\Id
          * @ORM\GeneratedValue
          * @ORM\Column(type="integer")
+         * @Groups({"unit","area"})
          */
     private ?int $id = null;
 
@@ -44,21 +45,20 @@ class Area
     private $actions;
 
     /**
-     * @Groups({"Action"})
-     * @Groups({"Area"})
      * @ORM\Column(type="string", length=255)
+     * @Groups({"unit","area"})
      */
     private $ref;
 
     /**
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="unit")
-     * @Groups({"Area"})
+     *
      */
     private $unit;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Area"})
+     * @Groups({"unit","area"})
      */
     private $name;
 
@@ -124,6 +124,15 @@ class Area
     public function getUnit(): ?Unit
     {
         return $this->unit;
+    }
+
+
+    /**
+     * @Groups("area")
+     */
+    public function getUnitData(): ?string
+    {
+        return $this->unit->getRef() . ' - ' . $this->unit->getName();
     }
 
     public function setUnit(?Unit $unit): self

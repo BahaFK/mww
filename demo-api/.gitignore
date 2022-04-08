@@ -4,4 +4,3 @@
 ###< lexik/jwt-authentication-bundle ###
 /var/
 /vendor/
-/.env.local
