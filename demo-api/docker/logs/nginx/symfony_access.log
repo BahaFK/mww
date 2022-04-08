@@ -193,3 +193,7 @@
 172.19.0.1 - - [28/Mar/2022:13:16:04 +0000] "GET /api/actions HTTP/1.1" 200 1440 "http://localhost:4200/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
 172.19.0.1 - - [28/Mar/2022:13:17:39 +0000] "GET /api/actions HTTP/1.1" 200 1440 "http://localhost:4200/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
 172.19.0.1 - - [28/Mar/2022:13:18:21 +0000] "GET /api/actions HTTP/1.1" 200 1440 "http://localhost:4200/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
+172.19.0.1 - - [02/Apr/2022:08:17:25 +0000] "GET /bundles/apiplatform/fonts/open-sans/400.css HTTP/1.1" 200 2905 "http://localhost:8080/api" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
+172.19.0.1 - - [02/Apr/2022:08:17:25 +0000] "GET /bundles/apiplatform/fonts/open-sans/files/open-sans-latin-400-normal.woff2 HTTP/1.1" 200 16692 "http://localhost:8080/bundles/apiplatform/fonts/open-sans/400.css" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
+172.19.0.1 - - [02/Apr/2022:08:17:25 +0000] "GET /favicon.ico HTTP/1.1" 499 0 "http://localhost:8080/api" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
+172.19.0.1 - - [02/Apr/2022:08:17:26 +0000] "GET /bundles/apiplatform/fonts/open-sans/files/open-sans-latin-700-normal.woff2 HTTP/1.1" 200 16408 "http://localhost:8080/bundles/apiplatform/fonts/open-sans/700.css" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
