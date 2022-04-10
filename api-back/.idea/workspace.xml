@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="852abc5f-4916-41b3-ac05-6163f8c8dcf8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/action-modal/action-modal.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/action-modal/action-modal.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/action-modal/action-modal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/action-modal/action-modal.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/action-modal/action-modal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/action-modal/action-modal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/details-modal/details-modal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/details-modal/details-modal.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/details-modal/details-modal.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/details-modal/details-modal.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/details-modal/details-modal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/components/details-modal/details-modal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/mat-colors/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/mat-colors/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/@fuse/shared.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/main/sample/sample.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/main/sample/sample.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/main/sample/sample.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/main/sample/sample.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/main/sample/sample.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/main/sample/sample.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/models/action.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/models/action.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/navigation/navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/navigation/navigation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/services/action.services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/services/action.services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mww" beforeDir="false" afterPath="$PROJECT_DIR$/mww" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mww/demo-api/src/Entity/Action.php" beforeDir="false" afterPath="$PROJECT_DIR$/mww/demo-api/src/Entity/Action.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mww/demo-api/src/Entity/Area.php" beforeDir="false" afterPath="$PROJECT_DIR$/mww/demo-api/src/Entity/Area.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mww/demo-api/src/Entity/Unit.php" beforeDir="false" afterPath="$PROJECT_DIR$/mww/demo-api/src/Entity/Unit.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/mww" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="27VUAmG5igv0AguaJ5NjWqyE6kS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="852abc5f-4916-41b3-ac05-6163f8c8dcf8" name="Changes" comment="" />
+      <created>1649404606086</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649404606086</updated>
+      <workItem from="1649404607277" duration="26000" />
+      <workItem from="1649487666415" duration="2677000" />
+      <workItem from="1649551712275" duration="2949000" />
+      <workItem from="1649586696721" duration="9988000" />
+      <workItem from="1649618323047" duration="607000" />
+      <workItem from="1649624687625" duration="1231000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
