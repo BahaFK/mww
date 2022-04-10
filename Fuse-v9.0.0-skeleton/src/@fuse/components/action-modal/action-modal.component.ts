@@ -2,18 +2,11 @@ import {Component, Inject, OnInit} from '@angular/core';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UnitServices} from '../../../app/services/unit.services';
+import {Area, Unit} from '../../../app/models/action.model';
+import {ActionsService} from '../../../app/services/action.services';
+import {Action} from '../../../app/models/action.model';
 
-export interface Unit {
-    id: number;
-    ref: string;
-    areas: Area[];
-}
-
-export interface Area {
-    id: number;
-    ref: string;
-    actions?: any;
-}
 
 @Component({
     selector: 'app-material-modal',
@@ -28,60 +21,44 @@ export class ActionModalComponent implements OnInit {
     unitArea: FormGroup;
     actionStep: FormGroup;
     horizontalStepperStep3: FormGroup;
-    unitsData: Unit[] = [
-        {
-            id: 0,
-            ref: 'OPT1',
-            areas: [
-                {id: 0, ref: 'OPT1 - Z1'},
-                {id: 1, ref: 'OPT1 - Z2'},
-                {id: 2, ref: 'OPT1 - Z3'},
-                {id: 3, ref: 'OPT1 - Z4'},
-                {id: 4, ref: 'OPT1 - Z5'},
-            ]
-        },
-        {
-            id: 1,
-            ref: 'OPT2',
-            areas: [
-                {id: 0, ref: 'OPT2 - Z1'},
-                {id: 1, ref: 'OPT2 - Z2'},
-                {id: 2, ref: 'OPT2 - Z3'},
-                {id: 3, ref: 'OPT2 - Z4'},
-                {id: 4, ref: 'OPT2 - Z5'},
-            ]
-        },
-        {
-            id: 2,
-            ref: 'OPT3',
-            areas: [
-                {id: 0, ref: 'OPT3 - Z1'},
-                {id: 1, ref: 'OPT3 - Z2'},
-                {id: 2, ref: 'OPT3 - Z3'},
-                {id: 3, ref: 'OPT3 - Z4'},
-                {id: 4, ref: 'OPT3 - Z5'},
-            ]
-        },
-    ];
-    areasData: Area[];
-
+    unitsData: Unit[] = [];
+    areasData: Area[] = [];
+    reseted = false;
+    unit = '';
+    area = '';
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         private dialogRef: MatDialogRef<ActionModalComponent>,
-        private _formBuilder: FormBuilder) {
+        private _formBuilder: FormBuilder,
+        public unitservice: UnitServices,
+        public actionservice: ActionsService
+    ) {
     }
 
     ngOnInit(): void {
 
+        this.formInit();
+
+    }
+
+    formInit(): void{
+        this.unitservice.getUnits().subscribe((data => {
+            this.unitsData = data;
+        }));
         // Horizontal Stepper form steps
         this.unitArea = this._formBuilder.group({
-            unit: ['', Validators.required],
-            area: ['', Validators.required]
+            unit: [this.unit, Validators.required],
+            area: [this.area, Validators.required]
         });
 
 
         this.actionStep = this._formBuilder.group({
-            address: ['']
+            week: [this.getWeek()],
+            date: [new Date()],
+            dueDate: [''],
+            finding: [''],
+            res: [''],
+            description: [''],
         });
 
         this.horizontalStepperStep3 = this._formBuilder.group({
@@ -90,18 +67,37 @@ export class ActionModalComponent implements OnInit {
             postalCode: ['']
         });
     }
-
     /**
      * Finish the horizontal stepper
      */
-    finishHorizontalStepper(): void {
-        alert('You have finished the horizontal stepper!');
+    finishHorizontalStepper(reopen: boolean): void {
+        let action: Action = this.unitArea.getRawValue();
+        action = {...action, ...this.actionStep.getRawValue()};
+        action.area = '/api/areas/' + action.area;
+        this.actionservice.addAction(action).subscribe((data) => {
+            if (!reopen){
+                this.dialogRef.close(reopen);
+            }else{
+                this.formInit();
+                this.reseted = true;
+
+            }
+        });
     }
 
     getAreas($event): void
     {
         this.areasData = this.unitsData.find(unit => unit.id === $event).areas;
 
-        console.log($event);
+    }
+
+    // Returns the ISO week of the date.
+    getWeek(): string {
+        const currentdate: any = new Date();
+        const oneJan: any = new Date(currentdate.getFullYear(), 0, 1);
+        const numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
+        const result = Math.ceil(( currentdate.getDay() + 1 + numberOfDays) / 7) - 1 ;
+        return  'CW ' + result;
+
     }
 }

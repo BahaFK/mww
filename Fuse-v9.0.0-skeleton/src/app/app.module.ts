@@ -17,12 +17,15 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
+import { AreaModule } from './main/area/area.module';
 import {MatTableModule} from '@angular/material/table';
+import {SampleModule} from './main/sample/sample.module';
+import {UnitModule} from './main/unit/unit.module';
+import {MatInputModule} from '@angular/material/input';
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sample'
+        redirectTo: 'action'
     }
 ];
 
@@ -54,7 +57,10 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule
+        AreaModule,
+        SampleModule,
+        UnitModule,
+        MatInputModule
     ],
     bootstrap   : [
         AppComponent

@@ -15,26 +15,26 @@ import { Action } from '../models/action.model';
 })
 export class ActionsService {
 
-    private ActionUrl = `${environment.apiUrl}/action`;
+    private ActionUrl = `${environment.apiUrl}`;
   
     constructor(private http: HttpClient) { }
   
     getActions(): Observable<any> {
-      return this.http.get<any>(`${this.ActionUrl}/actions`);
+      return this.http.get<Action[]>(`${this.ActionUrl}/actions`);
     }
     getAction(id: number): Observable<any> {
-        return this.http.get<any>(`${this.ActionUrl}/${id}`);
+        return this.http.get<any>(`${this.ActionUrl}/actions/${id}`);
     }
   
     addAction(action: Action): Observable<any> {
-      return this.http.post<any>(`${environment.apiUrl}/action`, action);
+      return this.http.post<any>(`${environment.apiUrl}/actions`, action);
     }
   
     editAction(action: Action, id: number): Observable<any> {
-      return this.http.put<any>(`${environment.apiUrl}/action/${id}`, action);
+      return this.http.put<any>(`${environment.apiUrl}/actions/${id}`, action);
     }
   
     deleteAction(id: string): Observable<any> {
-      return this.http.delete<any>(`${environment.apiUrl}/action/${id}`);
+      return this.http.delete<any>(`${environment.apiUrl}/actions/${id}`);
     }
 }

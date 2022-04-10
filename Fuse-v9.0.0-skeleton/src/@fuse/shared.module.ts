@@ -14,6 +14,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {DetailsModalComponent} from './components/details-modal/details-modal.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
 
@@ -33,7 +35,9 @@ import {MatBadgeModule} from '@angular/material/badge';
         MatButtonModule,
         MatStepperModule,
         MatInputModule,
-        MatBadgeModule
+        MatBadgeModule,
+        MatProgressSpinnerModule,
+        MatDatepickerModule
 
 ],
     exports  : [

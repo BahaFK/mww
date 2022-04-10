@@ -1,5 +1,4 @@
 <mat-dialog-content class="mat-typography">
-    <div class="invoice-container">
 
         <!-- INVOICE -->
         <div class="card-invoice">
@@ -10,32 +9,48 @@
                     <div class="client">
                         <div class="invoice-number" fxLayout="row" fxLayoutAlign="start center">
                             <span class="title">ACTION  :</span>
-                            <span class="number">  {{element.finding}}</span>
+                            <span class="number">  {{data.finding }}</span>
                         </div>
 
                         <div class="due-date" fxLayout="row" fxLayoutAlign="start center">
                             <span class="title">DATE SOUMISSSION</span>
-                            <span class="date">{{element.date}}</span>
+                            <span class="date">{{data.date | date: 'dd/MM/yyyy'}}</span>
                         </div>
 
                         <div class="due-date" fxLayout="row" fxLayoutAlign="start center">
                             <span class="title">DATE REALISATION</span>
-                            <span class="date">{{element.due_date}}</span>
+                            <span class="date">{{data.dueDate | date: 'dd/MM/yyyy'}}</span>
                         </div>
 
                         <div class="due-date" fxLayout="row" fxLayoutAlign="start center">
                             <span class="title">ZONE</span>
-                            <span class="date">{{element.due_date}}</span>
+                            <span class="date">{{data.area }}</span>
                         </div>
 
                         <!--                    <div class="info">-->
-                        <!--                        <div class="title">{{element.client.title}}</div>-->
-                        <!--                        <div *ngIf="invoice?.client.address" class="address">{{element.client.address}}</div>-->
-                        <!--                        <div *ngIf="invoice?.client.phone" class="phone">{{element.client.phone}}</div>-->
-                        <!--                        <div *ngIf="invoice?.client.email" class="email">{{element.client.email}}</div>-->
-                        <!--                        <div *ngIf="invoice?.client.website" class="website">{{element.client.website}}</div>-->
+                        <!--                        <div class="title">{{data.client.title}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.address" class="address">{{data.client.address}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.phone" class="phone">{{data.client.phone}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.email" class="email">{{data.client.email}}</div>-->
+                        <!--                        <div *ngIf="invoice?.client.website" class="website">{{data.client.website}}</div>-->
                         <!--                    </div>-->
                     </div>
+
+                    <div class="client status" fxLayout="column" fxLayoutAlign="start center">
+                        <div class="invoice-number">
+                            <span class="title">STATUS  :</span>
+                        </div>
+                        <div [ngClass]="color">
+                            <mat-progress-spinner
+                                class="example-margin"
+                                [color]="'primary'"
+                                [mode]="progressBarMode"
+                                [value]="data.status"
+                            >
+                            </mat-progress-spinner>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="content">
@@ -49,50 +64,6 @@
                         tincidunt lacinia et eget eros.
                     </div>
                 </div>
-                <table class="simple invoice-table">
-                    <thead>
-                    <tr>
-                        <th>STATUS</th>
-                        <th>AVANCEMENT</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="title">
-                                Planification
-                            </div>
-                        </td>
-                        <td>
-                            {{element.plan_status}}
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="title">
-                                Vérification
-                            </div>
-                        </td>
-                        <td>
-                            {{element.check_satus}}
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="title">
-                                Action
-                            </div>
-                        </td>
-                        <td>
-                            {{element.act_status}}
-                        </td>
-
-                    </tr>
-                    </tbody>
-                </table>
-
                 <div class="cards">
                     <div class="card" fxLayout="column">
 
@@ -106,7 +77,7 @@
                         </div>
                     </div>
 
-                    <div class="card"fxLayout="column">
+                    <div class="card" fxLayout="column">
 
                         <div class="badge "><h4> APRES </h4>
                         </div>
@@ -123,5 +94,4 @@
 
         </div>
 
-    </div>
 </mat-dialog-content>

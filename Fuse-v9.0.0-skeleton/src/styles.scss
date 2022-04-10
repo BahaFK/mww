@@ -3,3 +3,8 @@
 
 // Import app.theme.scss
 @import "app/app.theme";
+
+::ng-deep body.theme-default .accent {
+    background-color: #00b8b8 !important;
+    color: white !important;
+}

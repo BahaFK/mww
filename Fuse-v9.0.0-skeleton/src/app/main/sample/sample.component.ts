@@ -17,29 +17,14 @@ import {Action} from '../../models/action.model';
 export interface PeriodicElement {
     id: number;
     week: string;
-    date: string;
-    due_date: string;
+    date: Date;
+    dueDate: Date;
     area: string;
     finding: string;
-    plan_status: number;
-    act_status: number;
-    check_satus: number;
-    status: string;
+    status: number;
 }
 
 
-export const ELEMENT_DATA: PeriodicElement[] = [
-    {id: 1 , week: 'CW01', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'H', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'done'},
-    {id: 2 , week: 'CW02', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'He', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'in progress'},
-    {id: 3 , week: 'CW03', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'Li', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'done'},
-    {id: 4 , week: 'CW04', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'Be', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'in progress'},
-    {id: 5 , week: 'CW05', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'B', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'overdated'},
-    {id: 6 , week: 'CW06', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'C', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'in progress'},
-    {id: 7 , week: 'CW07', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'N', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'done'},
-    {id: 8 , week: 'CW08', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'O', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'overdated'},
-    {id: 9 , week: 'CW09', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'F', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'in progress'},
-    {id: 10 , week: 'CW010', date: new Date().toLocaleString().slice(0, 10), due_date: new Date().toLocaleString().slice(0, 10), area: 'Ne', finding: 'finding ', plan_status: 25, check_satus: 25, act_status: 25, status: 'overdated'},
-];
 
 @Component({
     selector: 'sample',
@@ -50,7 +35,7 @@ export class SampleComponent implements OnInit, OnDestroy {
     fuseConfig: any;
     navigation: any;
 
-    displayedColumns = ['week', 'date', 'due_date', 'area', 'finding', 'status', 'details'];//'plan_status', 'act_status', 'check_satus'
+    displayedColumns = ['week', 'date', 'dueDate', 'area', 'finding', 'status', 'details'];
     dataSource: Action[] = [];
 
     // Private
@@ -89,7 +74,12 @@ export class SampleComponent implements OnInit, OnDestroy {
     }
 
     openActionDialog(): void {
-        this.dialog.open(ActionModalComponent);
+        const actionDialog = this.dialog.open(ActionModalComponent);
+        actionDialog.afterClosed().subscribe((reopen) => {
+            this.actionservice.getActions().subscribe((data => {
+                this.dataSource = data;
+            }));
+        });
     }
 
     /**
@@ -100,10 +90,20 @@ export class SampleComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
+
     openDialogDetails(id: number): void {
-        this.dialog.open(DetailsModalComponent);
+
+        this.actionservice.getAction(id).subscribe((data => {
+            this.dialog.open(DetailsModalComponent, {
+                width: '80%',
+                height: '80%',
+                data : data
+            });
+        }));
     }
-    getClass(status){
+
+    getClass(element: Action): string {
+        const status = this.getStatus(element);
         switch (status) {
             case 'in progress':
                 return 'st-yellow-200';
@@ -117,5 +117,17 @@ export class SampleComponent implements OnInit, OnDestroy {
 
         }
 
-}
+    }
+
+    getStatus(element: Action): string
+    {
+        if (element.status === 100 ){
+            return 'done';
+        }
+
+        if (new Date().getTime() < new Date(element.dueDate).getTime()){
+            return 'in progress';
+        }
+        return 'overdated';
+    }
 }

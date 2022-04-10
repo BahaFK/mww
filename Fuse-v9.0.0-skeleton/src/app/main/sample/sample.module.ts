@@ -11,7 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 const routes = [
     {
-        path     : 'sample',
+        path     : 'action',
         component: SampleComponent
     }
 ];

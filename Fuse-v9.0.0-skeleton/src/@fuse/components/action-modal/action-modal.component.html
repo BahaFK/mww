@@ -1,10 +1,11 @@
-<h2 mat-dialog-title>Ajouter une action</h2>
+<h2 mat-dialog-title *ngIf="!reseted">Ajouter une action</h2>
+<h2 mat-dialog-title *ngIf="reseted">Ajouter une  Autre action</h2>
 <mat-dialog-content class="mat-typography">
 
     <div class="horizontal-stepper-wrapper">
 
         <!-- HORIZONTAL STEPPER EXAMPLE -->
-        <mat-horizontal-stepper [linear]="true">
+        <mat-horizontal-stepper [linear]="true" #stepper>
 
             <mat-step [stepControl]="unitArea">
 
@@ -18,20 +19,19 @@
                             <mat-select formControlName="unit" required (selectionChange)="getAreas($event.value)">
                                 <mat-option>--</mat-option>
                                 <mat-option *ngFor="let unit of unitsData" [value]="unit.id">
-                                    {{unit.ref}}
+                                    {{unit.ref}}  - {{unit.name}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Zone d'appartenance à l'unité</mat-label>
-                            <mat-select formControlName="area" required >
+                            <mat-select formControlName="area" required>
                                 <mat-option>--</mat-option>
                                 <mat-option *ngFor="let area of areasData" [value]="area.id">
-                                    {{area.ref}}
+                                    {{area.ref}} - {{area.name}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-
 
 
                     </div>
@@ -55,11 +55,46 @@
                     <div fxFlex="1 0 auto" fxLayout="row">
 
                         <mat-form-field appearance="outline" fxFlex="100">
-                            <mat-label>Address</mat-label>
-                            <textarea matInput formControlName="address" required>
-                                    1600 Amphitheatre Pkwy
+                            <mat-label>Problème</mat-label>
+                            <textarea matInput formControlName="finding" required>
+                                    Entrer le problème trouvé
                                 </textarea>
-                            <mat-error>Address is required!</mat-error>
+                            <mat-error>Ce champ est obligatoire</mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxFlex="100" fxLayout="row">
+
+                        <div class="m-5px">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Date de réalisation</mat-label>
+                                <input matInput formControlName="dueDate" [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="m-5px">
+
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Responsable</mat-label>
+                                <input matInput formControlName="res" required>
+                                <mat-error>Ce champ est obligatoire</mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div fxFlex="1 0 auto" fxLayout="row">
+
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput formControlName="description" required>
+                                    Entrer une description
+                                </textarea>
+                            <mat-error>Description is required!</mat-error>
                         </mat-form-field>
 
                     </div>
@@ -86,11 +121,11 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
-                        Previous
+                    <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent"  (click)="finishHorizontalStepper(true);stepper.reset()">
+                        Enregister et ajouter un autre
                     </button>
-                    <button mat-raised-button type="button" color="accent" (click)="finishHorizontalStepper()">
-                        Finish
+                    <button mat-raised-button type="button" color="accent" (click)="finishHorizontalStepper(false)">
+                        Enregister
                     </button>
                 </div>
 

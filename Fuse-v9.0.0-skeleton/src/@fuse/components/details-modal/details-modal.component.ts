@@ -1,21 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {PeriodicElement} from '../../../app/main/sample/sample.component';
-export  const ELEMENT_DATA: PeriodicElement =
-    {
-        id: 1,
-        week: 'CW01',
-        date: new Date().toLocaleString().slice(0, 10),
-        due_date: new Date().toLocaleString().slice(0, 10),
-        area: 'H',
-        finding: 'finding ',
-        plan_status: 25,
-        check_satus: 25,
-        act_status: 25,
-        status: 'done'
-    };
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+
 @Component({
     selector: 'app-material-modal',
     templateUrl: './details-modal.component.html',
@@ -24,17 +13,29 @@ export  const ELEMENT_DATA: PeriodicElement =
 
 export class DetailsModalComponent implements OnInit {
 
-    element: PeriodicElement;
+    progressBarMode: ProgressSpinnerMode = 'determinate';
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: any,
+        @Inject(MAT_DIALOG_DATA) public data: PeriodicElement,
         private dialogRef: MatDialogRef<DetailsModalComponent>,
         private _formBuilder: FormBuilder) {
     }
 
     ngOnInit(): void {
 
-       this.element = ELEMENT_DATA;
+    }
+
+    get color(): any {
+        switch( this.data.status){
+        case 25:
+        return 'red-spinner';
+        case 50:
+        return 'orange-spinner';
+        case 75:
+        return 'blue-spinner';
+        case 100:
+        return 'green-spinner';
 
     }
+}
 }
