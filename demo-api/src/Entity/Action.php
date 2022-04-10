@@ -18,11 +18,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * An action.
  *
  * @ORM\Entity
- * @ApiResource(formats={"json"})
- * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "due_date":"ipartial", "week":"ipartial"})
+ * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "dueDate":"ipartial", "week":"ipartial"})
  * @ApiResource(
  *     formats={"json"},
- *     normalizationContext={"groups"={"action"}}
+ *     normalizationContext={"groups"={"action:read"}},
+ *     denormalizationContext={"groups"={"action:write"}},
+ *     attributes={"order"={"updatedAt": "DESC"}}
  *     )
  */
 class Action
@@ -33,7 +34,7 @@ class Action
          * @ORM\Id
          * @ORM\GeneratedValue
          * @ORM\Column(type="integer")
-         * @Groups({"action"})
+         * @Groups({"action:read"})
          */
     private ?int $id ;
 
@@ -42,6 +43,7 @@ class Action
    /**
     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
+    * @Groups({"action:read","action:write"})
     */
    private $area;
 
@@ -54,51 +56,50 @@ class Action
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
     private $week;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
-    private $due_date;
+    private $dueDate;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
     private $photo_before;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
     private $photo_after;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      * @Gedmo\Timestampable(on="create")
-     * @Groups({"action"})
-
+     * @Groups({"action:read"})
      */
         
     private $createdAt;
@@ -106,15 +107,14 @@ class Action
     /**
      * @ORM\Column(type="datetime_immutable")
      * @Gedmo\Timestampable(on="update")
-     * @Groups({"action"})
-
+     * @Groups({"action:read"})
      */
     private $updatedAt;
 
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"action"})
+     * @Groups({"action:read","action:write"})
      */
     private $finding;
 
@@ -136,9 +136,7 @@ class Action
     }
 
 
-    /**
-     * @Groups({"action"})
-     */
+
     public function getAreaData(): ?string
     {
         return $this->area->getRef() . ' - ' . $this->area->getName();
@@ -185,12 +183,12 @@ class Action
 
     public function getDueDate(): ?\DateTimeInterface
     {
-        return $this->due_date;
+        return $this->dueDate;
     }
 
-    public function setDueDate(\DateTimeInterface $due_date): self
+    public function setDueDate(\DateTimeInterface $dueDate): self
     {
-        $this->due_date = $due_date;
+        $this->dueDate = $dueDate;
 
         return $this;
     }
@@ -214,7 +212,7 @@ class Action
 
     public function setStatus(?int $status): self
     {
-        $this->tatus = $status;
+        $this->status = $status;
 
         return $this;
     }

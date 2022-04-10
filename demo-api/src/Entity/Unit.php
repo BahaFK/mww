@@ -33,7 +33,7 @@ class Unit
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"unit","area"})
+     * @Groups({"unit"})
      */
     private $name;
 

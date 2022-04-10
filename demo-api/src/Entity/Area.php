@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
@@ -18,7 +19,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity
  * @ApiResource(
  *     formats={"json"},
- *     normalizationContext={"groups"={"unit","area"}}
+ *     normalizationContext={"groups"={"area:read"}},
+ *     denormalizationContext={"groups"={"area:write"}},
+ *     attributes={"order"={"updatedAt": "DESC"}}
  *     )
  * @ApiFilter(SearchFilter::class, properties={"ref":"exact", "name":"ipartial"})
  *
@@ -31,7 +34,7 @@ class Area
          * @ORM\Id
          * @ORM\GeneratedValue
          * @ORM\Column(type="integer")
-         * @Groups({"unit","area"})
+         * @Groups({"unit","area:read","action:read"})
          */
     private ?int $id = null;
 
@@ -40,25 +43,25 @@ class Area
 
         
     /**
-     * @ORM\OneToMany(targetEntity=Action::class, mappedBy="area", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Action::class, mappedBy="area:read", orphanRemoval=true)
      */
     private $actions;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"unit","area"})
+     * @Groups({"unit","area:read","area:write","action:read"})
      */
     private $ref;
 
     /**
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="unit")
-     *
+     * @Groups({"area:write"})
      */
     private $unit;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"unit","area"})
+     * @Groups({"unit","area:read","area:write","action:read"})
      */
     private $name;
 
@@ -66,6 +69,24 @@ class Area
      * @ORM\OneToMany(targetEntity=Resp::class, mappedBy="areas")
      */
     private $resps;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
+     * @Groups({"action"})
+
+     */
+
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
+     * @Groups({"action"})
+
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -128,11 +149,19 @@ class Area
 
 
     /**
-     * @Groups("area")
+     * @Groups("area:read")
+     */
+    public function getUnitId(): ?int
+    {
+        return $this->unit->getId();
+    }
+
+    /**
+     * @Groups("area:read")
      */
     public function getUnitData(): ?string
     {
-        return $this->unit->getRef() . ' - ' . $this->unit->getName();
+        return $this->unit->getRef();
     }
 
     public function setUnit(?Unit $unit): self
@@ -186,5 +215,14 @@ class Area
 
         return $this;
     }
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
 }
