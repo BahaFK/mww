@@ -9,11 +9,17 @@ export interface Action {
 }
 
 export interface Unit {
-    id: number;
+    id?: number;
     ref: string;
-    areas: Area[];
+    areas?: Area[];
     section?: string;
+    sectionId?: string;
     sectionData?: string;
+    name: string;
+}
+export interface Section {
+    id?: number;
+    ref: string;
     name: string;
 }
 export interface Area  {
