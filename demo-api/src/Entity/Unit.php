@@ -133,6 +133,14 @@ class Unit
         return $this->section->getRef() . ' - ' . $this->section->getName();
     }
 
+    /**
+     * @Groups({"unit"})
+     */
+    public function getSectionId(): ?int
+    {
+        return $this->section->getId();
+    }
+
     public function setSection(?Section $section): self
     {
         $this->section = $section;
