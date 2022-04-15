@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="852abc5f-4916-41b3-ac05-6163f8c8dcf8" name="Changes" comment="normalize and denormalise">
-      <change beforePath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/models/action.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Fuse-v9.0.0-skeleton/src/app/models/action.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mww" beforeDir="false" afterPath="$PROJECT_DIR$/mww" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mww/demo-api/src/Entity/Section.php" beforeDir="false" afterPath="$PROJECT_DIR$/mww/demo-api/src/Entity/Section.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mww/demo-api/src/Entity/Unit.php" beforeDir="false" afterPath="$PROJECT_DIR$/mww/demo-api/src/Entity/Unit.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +48,7 @@
       <workItem from="1649624687625" duration="2497000" />
       <workItem from="1649968220711" duration="471000" />
       <workItem from="1649971080421" duration="347000" />
+      <workItem from="1650015552472" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="normalize and denormalise">
       <created>1649629722488</created>
@@ -60,7 +57,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649629722488</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="normalize and denormalise">
+      <created>1650015594285</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650015594285</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
