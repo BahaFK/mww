@@ -1,13 +1,13 @@
 <?php
 
-namespace App\DataPersister;
+namespace App\DataPersistor;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserDataPersister implements DataPersisterInterface
+class UserDataPersistor implements DataPersisterInterface
 {
     private $entityManager;
     private $userPasswordEncoder;

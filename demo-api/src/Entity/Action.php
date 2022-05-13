@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * An action.
  *
  * @ORM\Entity
- * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "dueDate":"ipartial", "week":"ipartial"})
+ * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "dueDate":"ipartial", "week":"ipartial", "area":"ipartial"})
  * @ApiResource(
  *     formats={"json"},
  *     normalizationContext={"groups"={"action:read"}},
@@ -39,15 +39,12 @@ class Action
     private ?int $id ;
 
 
-
    /**
     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="actions")
     * @ORM\JoinColumn(nullable=false)
     * @Groups({"action:read","action:write"})
     */
    private $area;
-
-
 
     /**
      * @ORM\ManyToMany(targetEntity=Waste::class, mappedBy="waste")
