@@ -4,3 +4,7 @@
 ###< lexik/jwt-authentication-bundle ###
 /var/
 /vendor/
+
+# .gitignore
+
+/public/uploads/

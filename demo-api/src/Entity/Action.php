@@ -3,15 +3,16 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Controller\ActionController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\Groups;
-
 
 
 /**
@@ -23,7 +24,88 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     formats={"json"},
  *     normalizationContext={"groups"={"action:read"}},
  *     denormalizationContext={"groups"={"action:write"}},
- *     attributes={"order"={"updatedAt": "DESC"}}
+ *     attributes={"order"={"updatedAt": "DESC"}},
+ *     collectionOperations={
+ *     "get",
+ *     "post" = {
+ *       "controller" = ActionController::class,
+ *       "deserialize" = false,
+ *       "openapi_context" = {
+ *         "requestBody" = {
+ *           "description" = "File upload to an existing resource (superheroes)",
+ *           "required" = true,
+ *           "content" = {
+ *             "multipart/form-data" = {
+ *               "schema" = {
+ *                 "type" = "object",
+ *                 "properties" = {
+ *                   "area" = {
+ *                     "description" = "The name of the superhero",
+ *                     "type" = "string",
+ *                     "example" = "1",
+ *                   },
+ *                   "date" = {
+ *                     "description" = "The name of the superhero",
+ *                     "type" = "string",
+ *                     "example" = "2022-05-19T23:00:00.000Z",
+ *                   },
+ *                   "description" = {
+ *                     "description" = "The slug of the superhero",
+ *                     "type" = "string",
+ *                     "example" = "superman",
+ *                   },
+ *                   "dueDate" = {
+ *                     "description" = "Whether this superhero should be featured or not",
+ *                     "type" = "string",
+ *                     "example" = "2022-05-19T23:00:00.000Z",
+ *                   },
+ *                   "finding" = {
+ *                     "description" = "Whether this superhero should be featured or not",
+ *                     "type" = "string",
+ *                     "example" = "superman",
+ *                   },
+ *                   "week" = {
+ *                     "description" = "Whether this superhero should be featured or not",
+ *                     "type" = "string",
+ *                     "example" = "superman",
+ *                   },
+ *                   "photoBefore" = {
+ *                     "type" = "string",
+ *                     "format" = "binary",
+ *                     "description" = "Upload a cover image of the superhero",
+ *                   },
+ *                 },
+ *               },
+ *             },
+ *           },
+ *         },
+ *       },
+ *     },
+ *   },
+ *     itemOperations={
+ *     "get",
+ *     "patch",
+ *     "delete",
+ *     "put",
+ *     "get_one" = {
+ *       "method" = "GET",
+ *       "path" = "/get-action/{id}",
+ *       "controller" = ActionController::class,
+ *       "read"=false,
+ *       "openapi_context" = {
+ *         "parameters" = {
+ *           {
+ *             "name" = "id",
+ *             "in" = "path",
+ *             "description" = "id of the action",
+ *             "type" = "string",
+ *             "required" = true,
+ *             "example"= "1",
+ *           },
+ *         },
+ *       },
+ *     },
+ *     },
  *     )
  */
 class Action
@@ -85,13 +167,21 @@ class Action
     private $status;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="json",  nullable=true)
      * @Groups({"action:read","action:write"})
+     * @ApiProperty(
+     *   iri="http://schema.org/image",
+     *   attributes={
+     *     "openapi_context"={
+     *       "type"="string",
+     *     }
+     *   }
+     * )
      */
     private $photo_before;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="json", nullable=true)
      * @Groups({"action:read","action:write"})
      */
     private $photo_after;
@@ -120,11 +210,19 @@ class Action
 
     /**
      * @ORM\ManyToMany(targetEntity=Resp::class, mappedBy="actions")
+     * @Groups({"action:write"})
      */
     private $resps;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"action:read","action:write"})
+     */
+    private $validationDescription;
+
     public function __construct()
     {
+        $this->setStatus(25);
         $this->wastes = new ArrayCollection();
         $this->resps = new ArrayCollection();
     }
@@ -216,24 +314,28 @@ class Action
 
         return $this;
     }
-    public function getPhotoBefore(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPhotoBefore(): array
     {
-        return $this->photo_before;
+        return  $this->photo_before;
+
     }
 
-    public function setPhotoBefore(?string $photo_before): self
+    public function setPhotoBefore(array $photo_befores): self
     {
-        $this->photo_before = $photo_before;
+        $this->photo_before = $photo_befores;
 
         return $this;
     }
 
-    public function getPhotoAfter(): ?string
+    public function getPhotoAfter(): ?array
     {
         return $this->photo_after;
     }
 
-    public function setPhotoAfter(?string $photo_after): self
+    public function setPhotoAfter(?array $photo_after): self
     {
         $this->photo_after = $photo_after;
 
@@ -263,7 +365,7 @@ class Action
     {
         if (!$this->wastes->contains($waste)) {
             $this->wastes[] = $waste;
-            $waste->addWaste($this);
+            $waste->addAction($this);
         }
 
         return $this;
@@ -272,7 +374,7 @@ class Action
     public function removeWaste(Waste $waste): self
     {
         if ($this->wastes->removeElement($waste)) {
-            $waste->removeWaste($this);
+            $waste->removeAction($this);
         }
 
         return $this;
@@ -313,6 +415,18 @@ class Action
         if ($this->resps->removeElement($resp)) {
             $resp->removeAction($this);
         }
+
+        return $this;
+    }
+
+    public function getValidationDescription(): ?string
+    {
+        return $this->validationDescription;
+    }
+
+    public function setValidationDescription(?string $validationDescription): self
+    {
+        $this->validationDescription = $validationDescription;
 
         return $this;
     }

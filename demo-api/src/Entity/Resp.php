@@ -3,46 +3,55 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
  * A responsible.
  *
  * @ORM\Entity
- * @ApiResource(formats={"json"})
-  * @ApiFilter(SearchFilter::class, properties={"id":"exact", "name":"ipartial"})
+ * @ApiResource(
+ *     formats={"json"},
+ *     normalizationContext={"groups"={"resp:read"}},
+ *     denormalizationContext={"groups"={"resp:write"}},
+ *     )
+ * @ApiFilter(SearchFilter::class, properties={"id":"exact", "name":"ipartial"})
  */
 #[ApiResource]
 class Resp
 {
-        /**
-         * The id of this responsible.
-         *
-         * @ORM\Id
-         * @ORM\GeneratedValue
-         * @ORM\Column(type="integer")
-         */
+    /**
+     * The id of this responsible.
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     * @Groups({"resp:read"})
+     */
     private ?int $id = null;
 
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"resp:read"})
      */
     private $ref;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"resp:read"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"resp:read"})
      */
     private $mail;
 
@@ -116,6 +125,7 @@ class Resp
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->ref;
