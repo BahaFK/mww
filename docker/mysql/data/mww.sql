@@ -1,0 +1,521 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1:3306
+-- Généré le : ven. 20 mai 2022 à 20:25
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `mww`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `action`
+--
+
+DROP TABLE IF EXISTS `action`;
+CREATE TABLE IF NOT EXISTS `action` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `area_id` int(11) NOT NULL,
+  `week` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` datetime NOT NULL,
+  `due_date` datetime NOT NULL,
+  `photo_before` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo_after` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `updated_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `finding` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_47CC8C92BD0F409C` (`area_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `action`
+--
+
+INSERT INTO `action` (`id`, `area_id`, `week`, `date`, `due_date`, `photo_before`, `photo_after`, `created_at`, `updated_at`, `finding`, `description`, `status`) VALUES
+(1, 4, 'CW01', '2022-03-01 00:00:00', '2022-03-05 00:00:00', NULL, NULL, '2022-03-15 07:36:27', '2022-04-08 11:42:41', 'Nettoyage machine', 'Poussière sur machine d\'injection', 25),
+(2, 2, 'CW02', '2022-03-03 00:00:00', '2022-06-11 00:00:00', NULL, NULL, '2022-03-15 07:38:06', '2022-04-08 11:46:48', 'Standardisation poste', 'Identifiant poste non standardisé', 50),
+(3, 1, 'CW03', '2022-03-01 00:00:00', '2022-08-15 00:00:00', NULL, NULL, '2022-03-15 11:44:13', '2022-04-08 11:47:01', 'Traçage zone', 'Pas de traçage dans la ligne 2608', 75),
+(4, 3, 'CW03', '2022-03-01 00:00:00', '2022-03-01 00:00:00', NULL, NULL, '2022-03-22 10:58:53', '2022-04-08 11:47:29', 'Mettre à jour TOTEM', 'TOTEM non mis à jour', 100),
+(5, 5, 'CW04', '2022-03-01 00:00:00', '2022-07-08 00:00:00', NULL, NULL, '2022-03-31 12:06:41', '2022-04-08 11:47:39', 'Eliminer l\'inutile', 'Chiffon sur la station de soudure', 100),
+(6, 2, 'CW 14', '2022-04-11 09:55:30', '2022-04-27 23:00:00', NULL, NULL, '2022-04-11 09:56:49', '2022-04-11 09:56:49', 'Câbles débrancher', 'Brancher les câbles', NULL),
+(7, 9, 'CW 14', '2022-04-11 11:56:38', '2022-04-10 23:00:00', NULL, NULL, '2022-04-11 11:58:25', '2022-04-11 11:58:25', 'fuite huile', 'nettoyage et réparation', NULL),
+(8, 1, 'CW 14', '2022-04-12 10:33:15', '2022-04-05 23:00:00', NULL, NULL, '2022-04-12 10:33:42', '2022-04-12 10:33:42', 'a', 'a', NULL),
+(9, 1, 'CW 14', '2022-04-12 10:33:15', '2022-04-05 23:00:00', NULL, NULL, '2022-04-12 10:33:43', '2022-04-12 10:33:43', 'a', 'a', NULL),
+(10, 1, 'CW 14', '2022-04-12 10:33:15', '2022-04-05 23:00:00', NULL, NULL, '2022-04-12 10:33:43', '2022-04-12 10:33:43', 'a', 'a', NULL),
+(11, 1, 'CW 14', '2022-04-12 10:33:15', '2022-04-05 23:00:00', NULL, NULL, '2022-04-12 10:33:44', '2022-04-12 10:33:44', 'a', 'a', NULL),
+(12, 8, 'CW 15', '2022-04-15 10:42:37', '2022-04-21 23:00:00', NULL, NULL, '2022-04-15 10:45:02', '2022-04-15 10:45:02', 'aze', 'azertyui', NULL),
+(13, 7, 'CW 15', '2022-04-15 11:22:06', '2022-04-11 23:00:00', NULL, NULL, '2022-04-15 11:22:29', '2022-04-15 11:22:29', 'hhaha', 'aaaz', NULL),
+(14, 1, 'CW 19', '2022-05-13 11:16:18', '2022-05-17 23:00:00', NULL, NULL, '2022-05-13 11:17:06', '2022-05-13 11:17:06', 'gfd', 'gfd', NULL),
+(15, 1, 'CW 19', '2022-05-13 13:19:12', '2022-05-19 23:00:00', NULL, NULL, '2022-05-13 13:20:58', '2022-05-13 13:20:58', 'kjhg', 'iuytre', NULL),
+(16, 4, 'CW 20', '2022-05-18 13:00:27', '2022-05-24 23:00:00', NULL, NULL, '2022-05-18 13:01:34', '2022-05-18 13:01:34', 'aa', 'aa', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `area`
+--
+
+DROP TABLE IF EXISTS `area`;
+CREATE TABLE IF NOT EXISTS `area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `unit_id` int(11) DEFAULT NULL,
+  `ref` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_D7943D68F8BD700D` (`unit_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `area`
+--
+
+INSERT INTO `area` (`id`, `unit_id`, `ref`, `name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'OPT7-Z01', 'SMT Lines', NULL, NULL),
+(2, 1, 'OPT7-Z02', 'SMT annexe : Milling, Coating, ICT, Action-Pin', NULL, NULL),
+(3, 1, 'OPT7-Z03', 'THT, Découpage, Assemblage, vide', NULL, NULL),
+(4, 1, 'OPT7-Z04', 'Salle de lavage, Maintenance', NULL, NULL),
+(5, 1, 'OPT7-Z05', 'Salle d\'analyse', NULL, NULL),
+(6, 2, 'OPT9-Z01', 'Bureau QUA & Maint, Triage', NULL, NULL),
+(7, 2, 'OPT9-Z02', 'Maintenance & Magasin moules', NULL, NULL),
+(8, 2, 'OPT9-Z03', 'Parc 1', NULL, NULL),
+(9, 2, 'OPT9-Z04', 'Parc 2', NULL, NULL),
+(10, 2, 'OPT9-Z05', 'Parc 3', NULL, NULL),
+(11, 2, 'OPT9-Z06', 'Réception matière, Mixing et Emballage', NULL, NULL),
+(12, 3, 'OPH1-Z01', '3525_F-MUX Climate Panel_PSA&nbsp;   3526_F-MUX Central Panel_RCCNAC_PSA&nbsp;  3526_F-MUX Central Panel_RD6_PSA', NULL, NULL),
+(13, 3, 'OPH1-Z02', '3587_ACOS_RENAULT 3214_Park Break Lever_DAIMLER TRUCK BG_Laserbeschriftung', NULL, NULL),
+(14, 3, 'OPH1-Z03', '<div>3572_Driver Modul_RENAULT 3494_SWS phase II_AUTOLIV 3494_SWS_AUTOLIV 03214.38xx Electrical park brake switch HCU WABCO</div>', NULL, NULL),
+(15, 3, 'OPH1-Z04', '3102/3213_HFS_MERCEDES-BENZ 3213_Start-Stop Taste_RENAULT 3321_TBF 3227_AT-Indicator_RENAULT', NULL, NULL),
+(16, 3, 'OPH1-Z05', '3207/3213_AHV Switch_BMW 3448_Tip-Tronik_AUTOLIV 3316_SST_MERCEDES-BENZ 3214.380x_Electronic Parking brake HCU_KNORR BREMSE 4201_Control Panel Willi_div. Customer Zone_Marquage', NULL, NULL),
+(17, 3, 'OPH1-Z06', '3557_BMC Push Panel_PSA 3556_BMC Rocker Switch_PSA', NULL, NULL),
+(18, 4, 'OPM-Z01', 'a', NULL, NULL),
+(19, 4, 'OPM-Z02', 'Assembly_2067.310x-330x_Emotion                                               Assembly_1048_Snap Action Switch        Assembly_2048.3101_Snap Action Switch  Assembly_2060.120x_Powder Detec.Sensor Colt', NULL, NULL),
+(20, 4, 'OPM-Z03', 'Assembly_1093_Snap Action Switch             Assembly_2060.140x_Switch Application', NULL, NULL),
+(21, 4, 'OPM-Z04', 'a', NULL, NULL),
+(22, 4, 'OPM-Z05', 'Assembly_2800_Huckleberry/Tom Sawyer  Assembly_2048.2101_Snap Action Switch                  Assembly_2085_Power Tool Switch                    Assembly_1703_Appliance Switch', NULL, NULL),
+(23, 4, 'OPM-Z06', 'Assembly_2074.810x_Electronic sub-Assmb.      Assembly_2267.30_Power Tool Switch  Assembly_2701/2703_Power Tool Switch      Assembly_2709_Power Tool Switch        Assembly_1552_Appliance Switch Remote-off', NULL, NULL),
+(24, 4, 'OPM-Z07', 'Assembly_2100_Power Tool Switch           Assembly_1858_Appliance Switch            Assembly_1858_Appliance Switch', NULL, NULL),
+(25, 4, 'OPM-Z08', 'Assembly_2080_Power Tool Switch    Assembly_1801/1803_Appl.Switch Autom.  Assembly_6425_Button         Assembly_6450_Button       Assembly_1801/1803_Appl. Switch Man.     Assembly_6425_Button', NULL, NULL),
+(26, 4, 'OPM-Z09', 'Assembly_2063.210x_Door Sensor Sahara Assembly_1802/1804_Appl.Switch Autom.                  Assembly_1802-1842_Appl.Switch Man. Assmb.  Assembly_1802/1804_Appl. Switch Man.            Assembly_1802-1842_Appl.Switch Man. Assmb.', NULL, NULL),
+(27, 4, 'OPM-Z10', 'Assembly_2066.21xx_Pressure Sensor', NULL, NULL),
+(28, 4, 'OPM-Z11', 'Assembly_2066_Pressure Sensor Sinus', NULL, NULL),
+(29, 4, 'OPM-Z12', 'Assembly_3250/3251_NASS                                  Assembly_3271_Roof Switch', NULL, NULL),
+(30, 4, 'OPM-Z13', 'Assembly_2016.1101/1102_Slider', NULL, NULL),
+(31, 4, 'OPM-Z14', 'Assembly_1004/5_S-Action Switch H-Stamp Aut', NULL, NULL),
+(32, 4, 'OPM-Z15', 'Assembly_2061.2104_Flow Sensor Flip', NULL, NULL),
+(33, 4, 'OPM-Z16', 'Assembly_4200.0101_Dosing Pump IDOS-I', NULL, NULL),
+(34, 4, 'OPM-Z17', 'Assembly_307.x Kontaktträger vollst. 1267  Assembly_1267_Power Tool Switch', NULL, NULL),
+(35, 4, 'OPM-Z18', 'Assembly_2078.63_Walkman                                    Assembly_2078.65_Vulkan RU2                       Assembly_2078.66_Vulkan                                Assembly_2078.64_Vulkan MK3', NULL, NULL),
+(36, 4, 'OPM-Z19', 'Assembly_3585_E-Lock Phönix                       Assembly_1691_Appliance Switch', NULL, NULL),
+(37, 4, 'OPM-Z20', 'Assembly_1062/1068', NULL, NULL),
+(38, 4, 'OPM-Z21', 'a', NULL, NULL),
+(39, 4, 'OPM-Z22', 'Assembly_2600_Power Tool Switch                         Assembly_2602_Power Tool Switch', NULL, NULL),
+(40, 4, 'OPM-Z23', 'Assembly_1014_Snap Action Switch', NULL, NULL),
+(41, 4, 'OPM-Z24', '3240/3261_Panel Switch_SCANIA 3203/3230/3237_Panel Switch_div. Customer', NULL, NULL),
+(42, 4, 'OPM-Z25', '3244_SFTP Signal Switch_DAIMLER TRUCK', NULL, NULL),
+(43, 4, 'OPM-Z26', 'Assembly_3245/3247_Flex Rocker Switch', NULL, NULL),
+(44, 4, 'OPM-Z27', 'Assembly_2046.530x_EDW', NULL, NULL),
+(45, 4, 'OPM-Z28', 'Assembly_3220_Headlight Range Control', NULL, NULL),
+(46, 4, 'OPM-Z29', 'Assembly_3209_Rocker Switch', NULL, NULL),
+(47, 4, 'OPM-Z30', 'Partie gauche du couloir principal', NULL, NULL),
+(48, 4, 'OPM-Z31', 'Partie droite du couloir principal', NULL, NULL),
+(49, 5, 'LO-Z01', 'Import', NULL, NULL),
+(50, 5, 'LO-Z02', 'Export', NULL, NULL),
+(51, 5, 'LO-Z03', 'Magasin', NULL, NULL),
+(52, 5, 'LO-Z04', 'Magasin consommables/dangereux', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `resp`
+--
+
+DROP TABLE IF EXISTS `resp`;
+CREATE TABLE IF NOT EXISTS `resp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `areas_id` int(11) DEFAULT NULL,
+  `units_id` int(11) DEFAULT NULL,
+  `sections_id` int(11) DEFAULT NULL,
+  `manager` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_FA79E5C91E756D0A` (`areas_id`),
+  KEY `IDX_FA79E5C999387CE8` (`units_id`),
+  KEY `IDX_FA79E5C9577906E4` (`sections_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `resp`
+--
+
+INSERT INTO `resp` (`id`, `ref`, `name`, `mail`, `areas_id`, `units_id`, `sections_id`, `manager`) VALUES
+(1, 'T10203', 'KAANICH LASSAAD', 'LASSAAD.KAANICH@MARQUARDT.COM', NULL, 6, 1, 1),
+(2, 'T10349', 'WHIBI LAMJED', 'LAMJED.WHIBI@MARQUARDT.COM', NULL, 3, 1, 0),
+(3, 'T10765', 'SLITI SABER', 'SABER.SLITI@MARQUARDT.COM', NULL, 3, 1, 0),
+(4, 'T10938', 'BEN GHANEM RYM', 'RYM.BENGHANEM@MARQUARDT.COM', NULL, 3, 1, 0),
+(5, 'T10163', 'NEILI MAJDI', 'MAJDI.NEILI@MARQUARDT.COM', NULL, 3, 1, 0),
+(6, 'T10186', 'LAZRAK SAIDA', 'SAIDA.LAZRAK@MARQUARDT.COM', NULL, 3, 1, 0),
+(7, 'T10391', 'BOUJELBEN MOEZ', 'MOEZ.BOUJELBEN@MARQUARDT.COM', NULL, 3, 1, 1),
+(8, 'MD6255', 'TOUITI RIM', 'RIM.TOUITI@MARQUARDT.COM', NULL, 3, 1, 0),
+(9, 'T10885', 'KORDI ABDELHADI', 'ABDELHADI.KORDI@MARQUARDT.COM', NULL, 3, 1, 0),
+(10, 'T11139', 'JOUINI HIBA', 'HIBA.JOUINI@MARQUARDT.COM', NULL, 3, 1, 0),
+(11, 'T11143', 'MOKRANI MAHMOUD', 'MAHMOUD.MOKRANI@MARQUARDT.COM', NULL, 3, 1, 0),
+(12, 'T11040', 'AMAMOU AKRAM', 'AKRAM.AMAMOU@MARQUARDT.COM', NULL, 3, 1, 0),
+(13, 'MD8750', 'GUESMI HAMDI', 'HAMDI.GUESMI@MARQUARDT.COM', NULL, 3, 1, 0),
+(14, 'MD9024', 'ZANAGUI RAFIK', 'RAFIK.ZANAGUI@MARQUARDT.COM', NULL, 3, 1, 0),
+(15, 'T11147', 'EL ASKRI GHAITH ALAH', 'GHAITHALAH.ELASKRI@MARQUARDT.COM', NULL, 3, 1, 0),
+(16, 'T10874', 'SELMI NACER', 'NACER.SELMI@MARQUARDT.COM', NULL, 3, 1, 0),
+(17, 'T10888', 'AYARI ABDELAZIZ', 'ABDELAZIZ.AYARI@MARQUARDT.COM', NULL, 3, 1, 1),
+(18, 'T10967', 'SAYARI MARWEN', 'MARWEN.SAYARI@MARQUARDT.COM', NULL, 3, 1, 0),
+(19, 'T11058', 'FAZAI NIZAR', 'NIZAR.FAZAI@MARQUARDT.COM', NULL, 3, 1, 0),
+(20, 'T11148', 'OUERGHI RABIE', 'RABIE.OUERGHI@MARQUARDT.COM', NULL, 3, 1, 0),
+(21, 'T10247', 'NAHALI AHMED', 'AHMED.NAHALI@MARQUARDT.COM', NULL, 3, 1, 1),
+(22, 'T10777', 'YAKOUBI SAFOUAN', 'SAFOUAN.YAKOUBI@MARQUARDT.COM', NULL, 3, 1, 0),
+(23, 'T10899', 'BOUBAKER MAROUEN', 'MAROUEN.BOUBAKER@MARQUARDT.COM', NULL, 3, 1, 0),
+(24, 'T11010', 'GRAMI BASSAM', 'BASSAM.GRAMI@MARQUARDT.COM', NULL, 3, 1, 0),
+(25, 'T11102', 'SAFI RAFIK', 'RAFIK.SAFI@MARQUARDT.COM', NULL, 3, 1, 0),
+(26, 'T11117', 'RAJHI AYOUB', 'AYOUB.RAJHI@MARQUARDT.COM', NULL, 3, 1, 0),
+(27, 'T11135', 'BOUKADIDA MAJED', 'MAJED.BOUKADIDA@MARQUARDT.COM', NULL, 3, 1, 0),
+(28, 'T10900', 'KHALED OMAR', 'OMAR.KHALED@MARQUARDT.COM', NULL, 3, 1, 1),
+(29, 'T10963', 'AMIRI EMNA', 'EMNA.AMIRI@MARQUARDT.COM', NULL, 3, 1, 1),
+(30, 'T11067', 'BECH HAMBA ZEINEB', 'ZEINEB.BECHHAMBA@MARQUARDT.COM', NULL, 3, 1, 1),
+(31, 'T10373', 'OUNI RAJA', 'RAJA.OUNI@MARQUARDT.COM', NULL, 4, 1, 0),
+(32, 'T10019', 'BEJAOUI ZOHRA', 'ZOHRA.BEJAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(33, 'T10719', 'YAKOUBI MOHAMED ALI', 'MOHAMEDALI.YAKOUBI@MARQUARDT.COM', NULL, 4, 1, 0),
+(34, 'T10863', 'AKERMI HAMED', 'HAMED.AKERMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(35, 'T10895', 'TURKI IMEN', 'IMEN.TURKI@MARQUARDT.COM', NULL, 4, 1, 0),
+(36, 'T11006', 'YALLOUL MOHAMED', 'MOHAMED.YALLOUL@MARQUARDT.COM', NULL, 4, 1, 0),
+(37, 'T11115', 'KAMMOUN MAISSA', 'MAISSA.KAMMOUN@MARQUARDT.COM', NULL, 4, 1, 0),
+(38, 'T11120', 'RHOUMA HELA', 'HELA.RHOUMA@MARQUARDT.COM', NULL, 4, 1, 0),
+(39, 'T11131', 'CHOURIA ZOULEIKA', 'ZOULEIKA.CHOURIA@MARQUARDT.COM', NULL, 4, 1, 0),
+(40, 'T10328', 'KHADRAOUI FATMA', 'FATMA.KHADRAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(41, 'T11026', 'SAIDANI HOUSSEM', 'HOUSSEM.SAIDANI@MARQUARDT.COM', NULL, 4, 1, 0),
+(42, 'T11033', 'KHALFA ALLALA', 'ALLALA.KHALFA@MARQUARDT.COM', NULL, 4, 1, 0),
+(43, 'T11088', 'ABIDI FATEN', 'FATEN.ABIDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(44, 'T11149', 'KHEMISSI EMNA', 'EMNA.KHEMISSI@MARQUARDT.COM', NULL, 4, 1, 0),
+(45, 'MD6231', 'OUHIBI MAHA', 'MAHA.OUHIBI@MARQUARDT.COM', NULL, 4, 1, 0),
+(46, 'MD6235', 'ARGOUBI AWATEF', 'AWATEF.ARGOUBI@MARQUARDT.COM', NULL, 4, 1, 0),
+(47, 'T10093', 'KHELIF HATEM', 'HATEM.KHELIF@MARQUARDT.COM', NULL, 4, 1, 1),
+(48, 'MD4406', 'NEFZI REFKA', 'REFKA.NEFZI@MARQUARDT.COM', NULL, 4, 1, 0),
+(49, 'MD5020', 'BALTI HAYET', 'HAYET.BALTI@MARQUARDT.COM', NULL, 4, 1, 0),
+(50, 'T10308', 'TABAI LATIFA', 'LATIFA.TABAI@MARQUARDT.COM', NULL, 4, 1, 0),
+(51, 'T10318', 'BEN LAROUSSI BESMA', 'BESMA.BENLAROUSSI@MARQUARDT.COM', NULL, 4, 1, 0),
+(52, 'T10817', 'ABDELAOUI AHMED', 'AHMED.ABDELAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(53, 'T11133', 'HAJ ABDALAH ALYA', 'ALYA.HAJ ABDALAH@MARQUARDT.COM', NULL, 4, 1, 0),
+(54, 'MD4335', 'BOUDHINA YAHYA', 'YAHYA.BOUDHINA@MARQUARDT.COM', NULL, 4, 1, 0),
+(55, 'MD7714', 'OMAR MOHAMED', 'MOHAMED.OMAR@MARQUARDT.COM', NULL, 4, 1, 0),
+(56, 'MD9095', 'DHKILI WAEL', 'WAEL.DHKILI@MARQUARDT.COM', NULL, 4, 1, 0),
+(57, 'T10112', 'ETTRI MOHAMED AYMEN', 'MOHAMEDAYMEN.ETTRI@MARQUARDT.COM', NULL, 4, 1, 0),
+(58, 'MD6245', 'AKAICHI NIZAR', 'NIZAR.AKAICHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(59, 'T10097', 'BAAOUANI LOTFI', 'LOTFI.BAAOUANI@MARQUARDT.COM', NULL, 4, 1, 0),
+(60, 'T10300', 'FRIKHA HICHEM', 'HICHEM.FRIKHA@MARQUARDT.COM', NULL, 4, 1, 0),
+(61, 'T10374', 'TROUDI FOUED', 'FOUED.TROUDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(62, 'T10535', 'ABIDI NIZAR', 'NIZAR.ABIDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(63, 'T10569', 'GHAZOUANI SLIM', 'SLIM.GHAZOUANI@MARQUARDT.COM', NULL, 4, 1, 0),
+(64, 'T10637', 'SAIDI ABDESSALEM', 'ABDESSALEM.SAIDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(65, 'T10834', 'RHIMI FAISAL', 'FAISAL.RHIMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(66, 'T10056', 'B LTAIFA NABIL', 'NABIL.BLTAIFA@MARQUARDT.COM', NULL, 4, 1, 0),
+(67, 'T10088', 'HAMIDA FADHEL', 'FADHEL.HAMIDA@MARQUARDT.COM', NULL, 4, 1, 0),
+(68, 'T10171', 'MANAI Fakher Ibrahim', 'FAKHERIBRAHIM.MANAI@MARQUARDT.COM', NULL, 4, 1, 0),
+(69, 'T10551', 'MELKI BILEL', 'BILEL.MELKI@MARQUARDT.COM', NULL, 4, 1, 0),
+(70, 'T10916', 'MZOUGHI YASSINE', 'YASSINE.MZOUGHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(71, 'T10354', 'CHAOUABI YASSINE', 'YASSINE.CHAOUABI@MARQUARDT.COM', NULL, 4, 1, 0),
+(72, 'T10894', 'HAMMAMI MOHAMED', 'MOHAMED.HAMMAMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(73, 'T11066', 'SELMI HAIFA', 'HAIFA.SELMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(74, 'T10071', 'SEBTI Mohd Karim', 'MOHDKARIM.SEBTI@MARQUARDT.COM', NULL, 4, 1, 0),
+(75, 'T10442', 'BEN AMMAR SALMA', 'SALMA.BENAMMAR@MARQUARDT.COM', NULL, 4, 1, 1),
+(76, 'T10509', 'DRIDI Mohamed Ali', 'MOHAMEDALI.DRIDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(77, 'MD8526', 'AOUADI MAHER', 'MAHER.AOUADI@MARQUARDT.COM', NULL, 4, 1, 0),
+(78, 'MD6213', 'ZAOUATI NOZHA', 'NOZHA.ZAOUATI@MARQUARDT.COM', NULL, 4, 1, 0),
+(79, 'MD7952', 'MEJRI THOURAYA', 'THOURAYA.MEJRI@MARQUARDT.COM', NULL, 4, 1, 0),
+(80, 'ME0038', 'HABOUBI NOUHA', 'NOUHA.HABOUBI@MARQUARDT.COM', NULL, 4, 1, 0),
+(81, 'T10853', 'LOUSAIF FADI', 'FADI.LOUSAIF@MARQUARDT.COM', NULL, 4, 1, 0),
+(82, 'T11111', 'JADRI NOURHENE', 'NOURHENE.JADRI@MARQUARDT.COM', NULL, 4, 1, 0),
+(83, 'T10350', 'MESSAOUDI KHALED', 'KHALED.MESSAOUDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(84, 'T11146', 'TRABELSI HAMIDA', 'HAMIDA.TRABELSI@MARQUARDT.COM', NULL, 4, 1, 0),
+(85, 'MD6164', 'IRMANI ZIED', 'ZIED.IRMANI@MARQUARDT.COM', NULL, 4, 1, 0),
+(86, 'MD6499', 'BOUDHIBA Ibrahim Sabri', 'IBRAHIMSABRI.BOUDHIBA@MARQUARDT.COM', NULL, 4, 1, 0),
+(87, 'MD8498', 'MARZOUKI LAMJED', 'LAMJED.MARZOUKI@MARQUARDT.COM', NULL, 4, 1, 0),
+(88, 'MD8525', 'MAHDAOUI WALID', 'WALID.MAHDAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(89, 'T10244', 'TIOUAJNI FAOUZI', 'FAOUZI.TIOUAJNI@MARQURDT.COM', NULL, 4, 1, 0),
+(90, 'T10390', 'OUNALLAH YAHIA', 'YAHIA.OUNALLAH@MARQUARDT.COM', NULL, 4, 1, 0),
+(91, 'T10573', 'OULED DHIFALLAH AMINE', 'AMINE.OULEDDHIFALLAH@MARQUARDT.COM', NULL, 4, 1, 0),
+(92, 'T10601', 'MARWENI EZZEDDINE', 'EZZEDDINE.MARWENI@MARQUARDT.COM', NULL, 4, 1, 0),
+(93, 'T10854', 'HAMDI HAMZA', 'HAMZA.HAMDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(94, 'T11027', 'BAALOUCH HATEM', 'HATEM.BAALOUCH@MARQUARDT.COM', NULL, 4, 1, 0),
+(95, 'T11095', 'NACEUR WISSEM', 'WISSEM.NACEUR@MARQUARDT.COM', NULL, 4, 1, 0),
+(96, 'T11107', 'HAMZA TAREK', 'TAREK.HAMZA@MARQUARDT.COM', NULL, 4, 1, 0),
+(97, 'T11126', 'BEN KHLIFA MOATAZ', 'MOATAZ.BENKHLIFA@MARQUARDT.COM', NULL, 4, 1, 0),
+(98, 'T11154', 'TROUDI AYMEN', 'AYMEN.TROUDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(99, 'MD6243', 'BEN KHELIFA ZIED', 'ZIED.BENKHELIFA@MARQUARDT.COM', NULL, 4, 1, 0),
+(100, 'MD6986', 'SALLAMI Mohamed Ali', 'MOHAMEDALI.SALLAMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(101, 'MD7315', 'MOHAMED SALAH Radhouane', 'RADHOUANE.MOHAMEDSALAH@MARQUARDT.COM', NULL, 4, 1, 0),
+(102, 'MD8921', 'CHAOUECH YASSINE', 'YASSINE.CHAOUECH@MARQUARDT.COM', NULL, 4, 1, 0),
+(103, 'MD8955', 'OUESLATI HAMDI', 'HAMDI.OUESLATI@MARQUARDT.COM', NULL, 4, 1, 0),
+(104, 'T10503', 'JAMAI AYMEN', 'AYMEN.JAMAI@MARQUARDT.COM', NULL, 4, 1, 0),
+(105, 'T10520', 'GUIZANI ACHREF', 'ACHREF.GUIZANI@MARQUARDT.COM', NULL, 4, 1, 0),
+(106, 'T11140', 'BARDI MOHAMED', 'MOHAMED.BARDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(107, 'T10973', 'SGHAIER ONS', 'ONS.SGHAIER@MARQUARDT.COM', NULL, 4, 1, 0),
+(108, 'T11072', 'ZARIAT ANIS', 'ANIS.ZARIAT@MARQUARDT.COM', NULL, 4, 1, 0),
+(109, 'T11080', 'TRABELSI AMINE', 'AMINE.TRABELSI@MARQUARDT.COM', NULL, 4, 1, 0),
+(110, 'T11084', 'RIABI Mohamed Omar', 'MOHAMEDOMAR.RIABI@MARQUARDT.COM', NULL, 4, 1, 0),
+(111, 'T11129', 'AMARI RAYAN', 'RAYAN.AMARI@MARQUARDT.COM', NULL, 4, 1, 0),
+(112, 'T11145', 'ZNAIDIA MAYSSA', 'MAYSSA.ZNAIDIA@MARQUARDT.COM', NULL, 4, 1, 0),
+(113, 'T11151', 'CHAOUCHI RIHAB', 'RIHAB.CHAOUCHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(114, 'ME0495', 'BEJAOUI OMAR', 'OMAR.BEJAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(115, 'T10292', 'ABASSI ABDELAZIZ', 'ABDELAZIZ.ABASSI@MARQUARDT.COM', NULL, 4, 1, 1),
+(116, 'T10950', 'MOUELHI IMEN', 'IMEN.MOUELHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(117, 'T11075', 'ARFAOUI MOHAMED', 'MOHAMED.ARFAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(118, 'T11137', 'BEL HAJ FARHAT Hamdi', 'HAMDI.BELHAJFARHAT@MARQUARDT.COM', NULL, 4, 1, 0),
+(119, 'MD6308', 'MAAOUI AMIRA', 'AMIRA.MAAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(120, 'MD9240', 'SALMI MAHER', 'MAHER.SALMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(121, 'T11073', 'THAMER JEBRI', 'JEBRI.THAMER@MARQUARDT.COM', NULL, 4, 1, 0),
+(122, 'T11125', 'HAOUS SAKAR', 'SAKAR.HAOUS@MARQUARDT.COM', NULL, 4, 1, 0),
+(123, 'T11082', 'BALHI NADA', 'NADA.BALHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(124, 'T11119', 'BOUSOFFARA SAWSEN', 'SAWSEN.BOUSOFFARA@MARQUARDT.COM', NULL, 4, 1, 0),
+(125, 'MD6193', 'DJEBALI CHOKRI', 'CHOKRI.DJEBALI@MARQUARDT.COM', NULL, 4, 1, 0),
+(126, 'MD6930', 'KARABAKA YASSER', 'YASSER.KARABAKA@MARQUARDT.COM', NULL, 4, 1, 0),
+(127, 'MD8621', 'MEJRI ATEF', 'ATEF.MEJRI@MARQUARDT.COM', NULL, 4, 1, 0),
+(128, 'MD6137', 'KRAIEM NABIL', 'NABIL.KRAIEM@MARQUARDT.COM', NULL, 4, 1, 0),
+(129, 'T10117', 'FARAH MOHAMED ALI', 'MOHAMEDALI.FARAH@MARQUARDT.COM', NULL, 4, 1, 0),
+(130, 'T10432', 'HAMDI MEHER', 'MEHER.HAMDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(131, 'T10556', 'KHMIRI MAHMOUD', 'MAHMOUD.KHMIRI@MARQUARDT.COM', NULL, 4, 1, 0),
+(132, 'T10636', 'BEN RHAYEM Rochdi', 'ROCHDI.BENRHAYEM@MARQUARDT.COM', NULL, 4, 1, 0),
+(133, 'T10656', 'BOUKASSOULA BELGACEM', 'BELGACEM.BOUKASSOULA@MARQUARDT.COM', NULL, 4, 1, 0),
+(134, 'T11114', 'YAAKOUBI MALEK', 'MALEK.YAAKOUBI@MARQUARDT.COM', NULL, 4, 1, 0),
+(135, 'MD6085', 'BADROUNI ADEL', 'ADEL.BADROUNI@MARQUARDT.COM', NULL, 4, 1, 0),
+(136, 'MD6238', 'AKAYCHI MOURAD', 'MOURAD.AKAYCHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(137, 'MD6626', 'HARRATH ISSAM', 'ISSAM.HARRATH@MARQUARDT.COM', NULL, 4, 1, 0),
+(138, 'MD7316', 'ALOUI HASSEN', 'HASSEN.ALOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(139, 'MD8532', 'REZGUI ATEF', 'ATEF.REZGUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(140, 'T10089', 'TOUIL ATEF', 'ATEF.TOUIL@MARQUARDT.COM', NULL, 4, 1, 0),
+(141, 'T10110', 'ALOUI BECHIR', 'BECHIR.ALOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(142, 'T11012', 'HAOURI OUSSAMA', 'OUSSAMA.HAOURI@MARQUARDT.COM', NULL, 4, 1, 0),
+(143, 'T11022', 'SLAYMIA SAMAH', 'SAMAH.SLAYMIA@MARQUARDT.COM', NULL, 4, 1, 0),
+(144, 'T11036', 'LAAMARI SLIM', 'SLIM.LAAMARI@MARQUARDT.COM', NULL, 4, 1, 0),
+(145, 'T11134', 'MARZOUK EMNA', 'EMNA.MARZOUK@MARQUARDT.COM', NULL, 4, 1, 0),
+(146, 'T10366', 'BEN NAYA Abdelmonem', 'ABDELMONEM.BENNAYA@MARQUARDT.COM', NULL, 4, 1, 1),
+(147, 'T10382', 'WERHANI MOUNIRA', 'MOUNIRA.WERHANI@MARQUARDT.COM', NULL, 4, 1, 0),
+(148, 'T10508', 'KHALFAOUI ZAHRA', 'ZAHRA.KHALFAOUI@MARQUARDT.COM', NULL, 4, 1, 0),
+(149, 'MD0033', 'CHIHI SAMEH', 'SAMEH.CHIHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(150, 'T10293', 'BEN FRADJ Manal', 'MANAL.BENFRADJ@MARQUARDT.COM', NULL, 4, 1, 0),
+(151, 'T10316', 'AYADI Najoua', 'NAJOUA.AYADI@MARQUARDT.COM', NULL, 4, 1, 0),
+(152, 'T10751', 'JBALI Olfa', 'OLFA.JBALI@MARQUARDT.COM', NULL, 4, 1, 0),
+(153, 'T10962', 'THEBTI IKBEL', 'IKBEL.THEBTI@MARQUARDT.COM', NULL, 4, 1, 0),
+(154, 'MD6161', 'MASSOUDI SAMI', 'SAMI.MASSOUDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(155, 'MD8637', 'DJELASSI SOUFIENE', 'SOUFIENE.DJELASSI@MARQUARDT.COM', NULL, 4, 1, 0),
+(156, 'T10267', 'MAKHZOUMI ABDELBASSET', 'ABDELBASSET.MAKHZOUMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(157, 'T10059', 'BOUJEMAA NADER', 'NADER.BOUJEMAA@MARQUARDT.COM', NULL, 4, 1, 0),
+(158, 'T10416', 'GUESMI AHMED', 'AHMED.GUESMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(159, 'T10548', 'BOUSLIMI SEIFEDDINE', 'SEIFEDDINE.BOUSLIMI@MARQUARDT.COM', NULL, 4, 1, 0),
+(160, 'T10769', 'JEMAI HOUSSEM', 'HOUSSEM.JEMAI@MARQUARDT.COM', NULL, 4, 1, 0),
+(161, 'T11112', 'KCHICH ADEL', 'ADEL.KCHICH@MARQUARDT.COM', NULL, 4, 1, 0),
+(162, 'MD6485', 'GADRI WALID', 'WALID.GADRI@MARQUARDT.COM', NULL, 4, 1, 0),
+(163, 'T10049', 'FRIJA SAMI', 'SAMI.FRIJA@MARQUARDT.COM', NULL, 4, 1, 0),
+(164, 'T10188', 'IDOUDI ADNEN', 'ADNEN.IDOUDI@MARQUARDT.COM', NULL, 4, 1, 0),
+(165, 'T10675', 'TRABELSI Mohamed Seifiddine', 'MOHAMEDSEIFEDDINE.TRABELSI@MARQUARDT.COM', NULL, 4, 1, 0),
+(166, 'T10943', 'KHAMASSI HOUSSINE', 'HOUSSINE.KHAMASSI@MARQUARDT.COM', NULL, 4, 1, 0),
+(167, 'T10934', 'MOUELHI DHOUHA', 'DHOUHA.MOUELHI@MARQUARDT.COM', NULL, 4, 1, 0),
+(168, 'T10081', 'JEMAI MEHDI', 'MEHDI.JEMAI@MARQUARDT.COM', NULL, 4, 1, 0),
+(169, 'T10125', 'ABDELKEFI HATEM', 'HATEM.ABDELKEFI@MARQUARDT.COM', NULL, 4, 1, 0),
+(170, 'T10152', 'KHELIFA ICHRAF', 'ICHRAF.KHELIFA@MARQUARDT.COM', NULL, 4, 1, 1),
+(171, 'T10936', 'MRABET AHMED', 'AHMED.MRABET@MARQUARDT.COM', NULL, 7, 1, 0),
+(172, 'T10844', 'GUESMI MAYSSA', 'MAYSSA.GUESMI@MARQUARDT.COM', NULL, 7, 1, 0),
+(173, 'MD8278', 'OTHMANE SABRINE', 'SABRINE.OTHMANE@MARQUARDT.COM', NULL, 7, 1, 0),
+(174, 'T10086', 'KHALFAOUI FOURAT', 'FOURAT.KHALFAOUI@MARQUARDT.COM', NULL, 7, 1, 0),
+(175, 'T10100', 'ACHICH ZOUBAYER', 'ZOUBAYER.ACHICH@MARQUARDT.COM', NULL, 7, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `resp_action`
+--
+
+DROP TABLE IF EXISTS `resp_action`;
+CREATE TABLE IF NOT EXISTS `resp_action` (
+  `resp_id` int(11) NOT NULL,
+  `action_id` int(11) NOT NULL,
+  PRIMARY KEY (`resp_id`,`action_id`),
+  KEY `IDX_BCEA4F05F2EFA634` (`resp_id`),
+  KEY `IDX_BCEA4F059D32F035` (`action_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `section`
+--
+
+DROP TABLE IF EXISTS `section`;
+CREATE TABLE IF NOT EXISTS `section` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `section`
+--
+
+INSERT INTO `section` (`id`, `ref`, `name`) VALUES
+(1, 'OP', 'Operations'),
+(2, 'LO', 'Logistique');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `unit`
+--
+
+DROP TABLE IF EXISTS `unit`;
+CREATE TABLE IF NOT EXISTS `unit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `section_id` int(11) DEFAULT NULL,
+  `ref` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_DCBB0C53D823E37A` (`section_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `unit`
+--
+
+INSERT INTO `unit` (`id`, `section_id`, `ref`, `name`) VALUES
+(1, 1, 'OPT7', 'Electronics'),
+(2, 1, 'OPT9', 'Molding'),
+(3, 1, 'OPH1', 'Automotive'),
+(4, 1, 'OPM', 'Power Tools & Snap action Switches'),
+(5, 2, 'LO', 'Logistics'),
+(6, 1, 'ALL', 'ALL'),
+(7, 1, 'OPT', 'Maint');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` json NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `waste`
+--
+
+DROP TABLE IF EXISTS `waste`;
+CREATE TABLE IF NOT EXISTS `waste` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `waste`
+--
+
+INSERT INTO `waste` (`id`, `type`) VALUES
+(1, 'Deviation'),
+(2, 'Sécurité'),
+(3, 'Retouches /Rebuts'),
+(4, 'Mouvements inutiles'),
+(5, 'Attentes'),
+(6, 'Stock'),
+(7, 'Process surdimensionné'),
+(8, 'Surproduction'),
+(9, 'Transport');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `waste_action`
+--
+
+DROP TABLE IF EXISTS `waste_action`;
+CREATE TABLE IF NOT EXISTS `waste_action` (
+  `waste_id` int(11) NOT NULL,
+  `action_id` int(11) NOT NULL,
+  PRIMARY KEY (`waste_id`,`action_id`),
+  KEY `IDX_B1F4511EFA6A22C2` (`waste_id`),
+  KEY `IDX_B1F4511E9D32F035` (`action_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `action`
+--
+ALTER TABLE `action`
+  ADD CONSTRAINT `FK_47CC8C92BD0F409C` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`);
+
+--
+-- Contraintes pour la table `area`
+--
+ALTER TABLE `area`
+  ADD CONSTRAINT `FK_D7943D68F8BD700D` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`);
+
+--
+-- Contraintes pour la table `resp`
+--
+ALTER TABLE `resp`
+  ADD CONSTRAINT `FK_FA79E5C91E756D0A` FOREIGN KEY (`areas_id`) REFERENCES `area` (`id`),
+  ADD CONSTRAINT `FK_FA79E5C9577906E4` FOREIGN KEY (`sections_id`) REFERENCES `section` (`id`),
+  ADD CONSTRAINT `FK_FA79E5C999387CE8` FOREIGN KEY (`units_id`) REFERENCES `unit` (`id`);
+
+--
+-- Contraintes pour la table `resp_action`
+--
+ALTER TABLE `resp_action`
+  ADD CONSTRAINT `FK_BCEA4F059D32F035` FOREIGN KEY (`action_id`) REFERENCES `action` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_BCEA4F05F2EFA634` FOREIGN KEY (`resp_id`) REFERENCES `resp` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `unit`
+--
+ALTER TABLE `unit`
+  ADD CONSTRAINT `FK_DCBB0C53D823E37A` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`);
+
+--
+-- Contraintes pour la table `waste_action`
+--
+ALTER TABLE `waste_action`
+  ADD CONSTRAINT `FK_B1F4511E9D32F035` FOREIGN KEY (`action_id`) REFERENCES `action` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_B1F4511EFA6A22C2` FOREIGN KEY (`waste_id`) REFERENCES `waste` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

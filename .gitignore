@@ -1,0 +1,10 @@
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+/var/
+/vendor/
+
+# .gitignore
+
+/public/uploads/
