@@ -39,7 +39,6 @@ class ActionController extends AbstractController
                     $before_photo[] = $fileUploader->upload($file);
                 }
 
-                return $before_photo;
                 $action->setPhotoBefore($before_photo);
 
 
