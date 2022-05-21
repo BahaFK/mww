@@ -45,7 +45,7 @@ class Resp
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"resp:read"})
+     * @Groups({"action:read","resp:read"})
      */
     private $name;
 

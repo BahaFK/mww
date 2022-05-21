@@ -400,6 +400,15 @@ class Action
         return $this->resps;
     }
 
+    /**
+     * @Groups("action:read")
+     */
+    public function getRespsData(): string
+    {
+
+        return $this->resps->first()? $this->resps->first()->getName() : "";
+    }
+
     public function addResp(Resp $resp): self
     {
         if (!$this->resps->contains($resp)) {
