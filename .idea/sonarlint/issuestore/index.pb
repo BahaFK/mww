@@ -3,16 +3,12 @@
 src/Kernel.php,a/5/a5d5cc43c07908e1476c934e4d03e47d43fb4fc3
 @
 public/index.php,0/e/0e61f67641b441bb3ee38e903c594d99cafa14b4
-4
-.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 b
 2public/bundles/apiplatform/fonts/open-sans/700.css,6/d/6da473ecc2e46ae0ff0d7dd8fcea1500b5aad9cc
 b
 2public/bundles/apiplatform/fonts/open-sans/400.css,9/a/9a61064e1ec74258779ef9fb83732cfd0a852676
 N
 config/packages/framework.yaml,d/f/df607fe73ff82c569824a7392edf5e760e998efe
-G
-docker/nginx/Dockerfile,6/9/690bdb1a7261a14c39d406bec9098734d9b7b2c4
 R
 "docker/php-fpm/database-connect.sh,e/2/e290f7e626de17641ab1d1a5d7a327be92b9feb3
 I
@@ -30,19 +26,13 @@ f
 b
 2public/bundles/easyadmin/form-type-text-editor.css,2/d/2d95bd383255d02af70110a5a4aa2e297ae78cff
 T
-$docker/logs/nginx/symfony_access.log,3/1/318679a7fb6702ec20d2185c461ded1cb9b145d3
-T
 $public/bundles/easyadmin/app.rtl.css,3/0/30aeee097ab8ec4a4ccca81f86f26a8d83f7181f
 m
 =public/bundles/easyadmin/form-type-text-editor.js.LICENSE.txt,8/d/8d470c4ee0382af513ff0713d52ff6dfdfc5e9b1
 b
 2public/bundles/easyadmin/form-type-code-editor.css,9/9/9901bba53b4ebcd214c6497f3fa383250efc43ab
-L
-docker/logs/nginx/access.log,c/b/cb68579956c3c670064018c03ef169534b7313ad
 f
 6public/bundles/easyadmin/form-type-text-editor.rtl.css,b/d/bdcb97955442b23cb2265a56f26f0c27b60534a9
-S
-#docker/logs/nginx/symfony_error.log,7/1/71670d6bdf8bdd651bba7f75434e1cb1dc1c1194
 a
 1public/bundles/easyadmin/form-type-text-editor.js,6/7/6797a564f98d9c6837d19603065b1078ccae9392
 [
@@ -51,8 +41,6 @@ Y
 )public/bundles/easyadmin/entrypoints.json,c/6/c62c9ba93eebaf9c143e2e0c6fea9513ae21e55c
 `
 0public/bundles/easyadmin/form-type-collection.js,9/f/9f5c1c27f5bc33a8303d6dad301def6cf217afde
-K
-docker/logs/nginx/error.log,7/6/76854793c5f56067687a5125ff1fdb6efa22e3fe
 a
 1public/bundles/easyadmin/form-type-code-editor.js,6/9/6939a25eb50c483c086a93c001f625724d127675
 V
@@ -95,8 +83,6 @@ u
 Epublic/bundles/apiplatform/swagger-ui/swagger-ui-standalone-preset.js,f/4/f4ce06ca537db333c4779caff5c3554854200017
 k
 ;public/bundles/apiplatform/graphql-playground/middleware.js,2/4/2487b14630ec1c2e14a2e2cea07720f9d81c901e
-]
--src/Controller/Admin/ActionCrudController.php,e/0/e004577ff5f965379d64e8c1b5a224cc8e9c9eb7
 [
 +src/Controller/Admin/AreaCrudController.php,d/c/dc0eac6b99cdd1e885ec8da7e4979ad41ae54067
 U
