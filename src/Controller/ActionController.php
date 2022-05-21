@@ -15,7 +15,6 @@ class ActionController extends AbstractController
 {
     public function __invoke(Request $request, FileUploader $fileUploader, ManagerRegistry $doctrine,LoggerInterface $logger)
     {
-        try {
 
 
             $dataRequest = $request->request->all();
@@ -40,31 +39,12 @@ class ActionController extends AbstractController
                     $before_photo[] = $fileUploader->upload($file);
                 }
 
-                //$before_photo = json_encode($before_photo);
-                //dd($before_photo);
+                return $before_photo;
                 $action->setPhotoBefore($before_photo);
 
 
-            }
-            if (isset($dataRequest['validation'])) {
-                $data = json_decode($dataRequest['validation'], true);
-                $action = $doctrine->getManager()->getRepository(Action::class)->find($data['id']);
 
-                dd($action);
-                $action->setStatus(50)
-                    ->setValidationDescription($data['validation_description']);
-
-                // upload the file and save its filename
-                $after_photo = [];
-                foreach ($request->files as $file) {
-                    $after_photo[] = $fileUploader->upload($file);
-                }
-                $action->setPhotoAfter($after_photo);
-
-            }
             return $action;
-        }catch (\Exception $ex){
-            $logger->error($ex->getMessage());
         }
 
 

@@ -13,8 +13,6 @@ R
 "docker/php-fpm/database-connect.sh,e/2/e290f7e626de17641ab1d1a5d7a327be92b9feb3
 I
 docker/php-fpm/Dockerfile,b/5/b53960e9333bb93a7c2feb53abdb4a4caba4383f
-I
-docker/docker-compose.yml,3/f/3fe733692645251b38d6ef0a55b2d48c3a1cf387
 =
 composer.json,3/9/3957b91a0d8450cea0115cfd5af69eac90d75897
 =
