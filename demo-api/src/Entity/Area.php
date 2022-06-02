@@ -156,9 +156,6 @@ class Area
         return $this->unit->getId();
     }
 
-    /**
-     * @Groups("area:read")
-     */
     public function getUnitData(): ?string
     {
         return $this->unit->getRef();
