@@ -17,7 +17,8 @@ class ActionController extends AbstractController
     {
 
 
-            $dataRequest = $request->request->all();
+        $dataRequest = $request->request->all();
+        try {
             if (isset($dataRequest['action'])) {
                 $data = json_decode($dataRequest['action'], true);
 
@@ -39,13 +40,15 @@ class ActionController extends AbstractController
                     $before_photo[] = $fileUploader->upload($file);
                 }
 
+                return $action;
                 $action->setPhotoBefore($before_photo);
-
-
-
-            return $action;
+            }
+        } catch (\Exception  $ex) {
+            $logger->error($ex->getMessage());
         }
 
 
     }
+
+
 }

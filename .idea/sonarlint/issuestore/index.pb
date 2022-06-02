@@ -83,8 +83,6 @@ k
 ;public/bundles/apiplatform/graphql-playground/middleware.js,2/4/2487b14630ec1c2e14a2e2cea07720f9d81c901e
 [
 +src/Controller/Admin/AreaCrudController.php,d/c/dc0eac6b99cdd1e885ec8da7e4979ad41ae54067
-U
-%docker/php-fpm/DatabaseConnection.php,8/1/81772d75091446a4fed7ee5a68358b32686cba7f
 j
 :public/bundles/easyadmin/images/fa-brands-400.2f517e09.svg,0/b/0b330d43ce80501996c706c76bb31403b2fc822d
 Å
@@ -117,3 +115,11 @@ j
 .src/Controller/Admin/SectionCrudController.php,7/7/7773a975e8497443ae2205e040641ceab5c90fe7
 \
 ,src/Controller/Admin/WasteCrudController.php,9/3/93d0a8ea2e66fb9f11c8ffc2cc458ae6d3546e87
+E
+src/Entity/Action.php,3/6/364eab0889df1a45d82ff372f11f0daee4631b8c
+K
+docker/logs/nginx/error.log,7/6/76854793c5f56067687a5125ff1fdb6efa22e3fe
+T
+$docker/logs/nginx/symfony_access.log,3/1/318679a7fb6702ec20d2185c461ded1cb9b145d3
+S
+#docker/logs/nginx/symfony_error.log,7/1/71670d6bdf8bdd651bba7f75434e1cb1dc1c1194
