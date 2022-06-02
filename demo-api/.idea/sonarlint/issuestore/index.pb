@@ -117,28 +117,3 @@ j
 ,src/Controller/Admin/WasteCrudController.php,9/3/93d0a8ea2e66fb9f11c8ffc2cc458ae6d3546e87
 E
 src/Entity/Action.php,3/6/364eab0889df1a45d82ff372f11f0daee4631b8c
-O
-docker/basic-docker-compose.yml,a/d/ad654df332f0e091fbf28c935334ad46a442590e
-I
-docker/mysql/data/mww.sql,4/a/4ac1ee10134aaad867fb3cd07e506ba667c1d4a1
-:
-
-.env.local,1/f/1fa30fea3e9ae270a3c38a6113a3689d8987d108
-Q
-!config/packages/api_platform.yaml,f/c/fc9b6d0b83d663d538e4b7ee5f9224da2f5c15eb
-P
- config/packages/nelmio_cors.yaml,c/7/c7cee19ef8bd16fdb92a74b9724402fea6a849d2
-U
-%docker/php-fpm/DatabaseConnection.php,8/1/81772d75091446a4fed7ee5a68358b32686cba7f
-K
-docker/logs/nginx/error.log,7/6/76854793c5f56067687a5125ff1fdb6efa22e3fe
-4
-.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
-T
-$docker/logs/nginx/symfony_access.log,3/1/318679a7fb6702ec20d2185c461ded1cb9b145d3
-S
-#docker/logs/nginx/symfony_error.log,7/1/71670d6bdf8bdd651bba7f75434e1cb1dc1c1194
-G
-docker/mysql/Dockerfile,2/1/2121938a2693361977048941f60b84a7a1421205
-S
-#src/Controller/ActionController.php,6/a/6a548b16e405114af6b77248af43ca14a25f89dd
