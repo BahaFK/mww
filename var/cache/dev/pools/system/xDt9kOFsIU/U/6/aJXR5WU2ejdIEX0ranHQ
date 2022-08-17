@@ -1,0 +1,3 @@
+<?php //route_name_d2724781098961123c6a9e678e771192
+
+return [PHP_INT_MAX, 'api_areas_get_item'];

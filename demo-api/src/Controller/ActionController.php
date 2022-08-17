@@ -16,7 +16,6 @@ class ActionController extends AbstractController
     public function __invoke(Request $request, FileUploader $fileUploader, ManagerRegistry $doctrine,LoggerInterface $logger)
     {
 
-
         $dataRequest = $request->request->all();
         try {
             if (isset($dataRequest['action'])) {
@@ -36,15 +35,17 @@ class ActionController extends AbstractController
                     ->setWeek($data['week']);
                 // upload the file and save its filename
                 $before_photo = [];
-                foreach ($request->files as $file) {
+		foreach ($request->files as $file) {
+			$logger->info("FILE :".$file->getClientOriginalName());
+
                     $before_photo[] = $fileUploader->upload($file);
                 }
 
                 return $action;
                 $action->setPhotoBefore($before_photo);
             }
-        } catch (\Exception  $ex) {
-            $logger->error($ex->getMessage());
+	} catch (\Exception  $ex) {
+            $logger->error("HELLO  23/07/22 :".$ex->getMessage());
         }
 
 

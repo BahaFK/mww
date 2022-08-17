@@ -29,6 +29,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "get",
  *     "post" = {
  *       "controller" = ActionController::class,
+ *       "validate"=false,
  *       "deserialize" = false,
  *       "openapi_context" = {
  *         "requestBody" = {

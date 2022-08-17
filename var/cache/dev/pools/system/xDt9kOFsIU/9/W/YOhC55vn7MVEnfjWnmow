@@ -1,0 +1,3 @@
+<?php //route_name_ee0de63125f1d5be9933e54eccce910a
+
+return [PHP_INT_MAX, 'api_wastes_get_item'];
