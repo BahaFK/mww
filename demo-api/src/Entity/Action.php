@@ -13,12 +13,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Repository\ActionRepository;
+
 
 
 /**
  * An action.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ActionRepository::class)
+
  * @ApiFilter(SearchFilter::class, properties={"id":"exact", "date":"ipartial", "dueDate":"ipartial", "week":"ipartial"})
  * @ApiResource(
  *     formats={"json"},
