@@ -65,7 +65,7 @@ class KpiController  extends AbstractController
         foreach($units as $unit){
             $result[]= [
                 "unit" => $unit->getRef(),
-                "kpis" => $this->doctrine->getRepository(Action::class)->getChart($unit->getId())];
+                "kpis" => $this->doctrine->getRepository(Action::class)->getChart($unit->getId())[0]];
         }
         return new JsonResponse(
             [
