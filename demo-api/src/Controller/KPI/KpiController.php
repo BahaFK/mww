@@ -55,7 +55,7 @@ class KpiController  extends AbstractController
         );
     }
     /**
-     * @Rest\Get("/chart", name="list_zipcode")
+     * @Rest\Get("/chart", name="chart")
      *
      */
     public function getChart(){
