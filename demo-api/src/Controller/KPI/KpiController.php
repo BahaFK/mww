@@ -4,7 +4,9 @@ namespace App\Controller\KPI;
 
 
 use App\Entity\Action;
+use App\Entity\Unit;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\ResultSetMapping;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use mysql_xdevapi\Result;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,6 +50,28 @@ class KpiController  extends AbstractController
                     "in_progress" => $inProgress,
                     "overdated" =>$Overdated
                 ]
+
+            ]
+        );
+    }
+    /**
+     * @Rest\Get("/chart", name="list_zipcode")
+     *
+     */
+    public function getChart(){
+        $units = $this->doctrine->getRepository(Unit::class)->findAll();
+        $result = [];
+
+        foreach($units as $unit){
+            $result[]= [
+                "unit" => $unit->getRef(),
+                "kpis" => $this->doctrine->getRepository(Action::class)->getChart($unit->getId())];
+        }
+        return new JsonResponse(
+            [
+                "code" => 200,
+                "message" => "succes",
+                "result" => $result
 
             ]
         );

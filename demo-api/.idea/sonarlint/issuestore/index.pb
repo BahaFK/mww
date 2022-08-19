@@ -115,19 +115,3 @@ j
 .src/Controller/Admin/SectionCrudController.php,7/7/7773a975e8497443ae2205e040641ceab5c90fe7
 \
 ,src/Controller/Admin/WasteCrudController.php,9/3/93d0a8ea2e66fb9f11c8ffc2cc458ae6d3546e87
-T
-$src/Controller/KPI/KpiController.php,d\c\dcbe8f2adbdf74382000431d73c2bfa45f4ca968
-E
-src/Entity/Action.php,3\6\364eab0889df1a45d82ff372f11f0daee4631b8c
-C
-src/Entity/Area.php,a\e\aee892d9daaaaf892600db413628f3b09cc0aa66
-T
-$src/Repository/SectionRepository.php,5\5\55d38e34732e5dd134e3ae8696c7298042dbae7e
-F
-src/Entity/Section.php,a\7\a7b2a151e2e006ae9d9623a7e5117914c3cc71d5
-G
-docker/mysql/Dockerfile,2\1\2121938a2693361977048941f60b84a7a1421205
-O
-docker/basic-docker-compose.yml,a\d\ad654df332f0e091fbf28c935334ad46a442590e
-S
-#src/Repository/ActionRepository.php,2\2\22cb944fed8cc1964b58c68c833e40d28170ccc1
